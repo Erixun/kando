@@ -4,19 +4,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import TheHeader from "@/components/Header.vue"
+import { defineComponent } from "vue";
+import TheHeader from "@/components/TheHeader.vue";
 
 export default defineComponent({
   components: { TheHeader },
   // setup() {
-    
+
   // },
-})
+});
 </script>
 
 
 <style lang="scss">
+$kando-lightblue: #a7e9fd;
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -25,15 +27,20 @@ export default defineComponent({
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+header {
+  background-color: $kando-lightblue;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+  #nav {
+    padding: 30px;
+    justify-self: left;
 
-    &.router-link-exact-active {
-      color: #42b983;
+    a {
+      font-weight: bold;
+      color: #2c3e50;
+
+      &.router-link-exact-active {
+        color: #42b983;
+      }
     }
   }
 }

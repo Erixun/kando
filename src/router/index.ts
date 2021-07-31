@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
-import KanbanBoard from "@/views/KanbanBoard.vue";
+import TheKanbanBoard from "@/views/TheKanbanBoard.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -19,8 +19,8 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/board",
-    name: "KanbanBoard",
-    component: KanbanBoard,
+    name: "TheKanbanBoard",
+    component: TheKanbanBoard,
   }
 ];
 
