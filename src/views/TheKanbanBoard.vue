@@ -1,17 +1,20 @@
 <template>
   <main>
-    <article class="column" id="backlog">Backlog</article>
-    <article class="column" id="upnext">Up Next</article>
-    <article class="column" id="doing">Doing</article>
-    <article class="column" id="done">Done</article>
+    <base-column :title=ColumnTitle.A />
+    <base-column :title=ColumnTitle.B />
+    <base-column :title=ColumnTitle.C />
+    <base-column :title=ColumnTitle.D />
   </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import BaseColumn from "@/components/BaseColumn.vue"
+import { ColumnTitle } from "@/components/columnTitle"
 
 export default defineComponent({
   name: "TheKanbanBoard",
+  components: { BaseColumn },
   props: {
     data: {
       type: String,
@@ -19,7 +22,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    return props;
+    return {props, ColumnTitle};
   },
 });
 </script>
