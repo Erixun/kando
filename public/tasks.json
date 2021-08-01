@@ -1,0 +1,32 @@
+[
+  {
+    "id": "0",
+    "title": "Task A",
+    "columnId": "1"
+  },
+  {
+    "id": "1",
+    "title": "Task B",
+    "columnId": "1"
+  },
+  {
+    "id": "2",
+    "title": "Task C",
+    "columnId": "2"
+  },
+  {
+    "id": "3",
+    "title": "Task D",
+    "columnId": "2"
+  },
+  {
+    "id": "4",
+    "title": "Task E",
+    "columnId": "3"
+  },
+  {
+    "id": "5",
+    "title": "Task F",
+    "columnId": "4"
+  }
+]
