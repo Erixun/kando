@@ -15,7 +15,6 @@ export default defineComponent({
 });
 </script>
 
-
 <style lang="scss">
 $kando-lightblue: #a7e9fd;
 

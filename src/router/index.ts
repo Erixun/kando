@@ -21,7 +21,7 @@ const routes: Array<RouteRecordRaw> = [
     path: "/board",
     name: "TheKanbanBoard",
     component: TheKanbanBoard,
-  }
+  },
 ];
 
 const router = createRouter({
