@@ -9,9 +9,6 @@ import TheHeader from "@/components/TheHeader.vue";
 
 export default defineComponent({
   components: { TheHeader },
-  // setup() {
-
-  // },
 });
 </script>
 

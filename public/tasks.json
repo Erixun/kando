@@ -1,32 +1,47 @@
 [
   {
-    "id": "0",
-    "title": "Task A",
-    "columnId": "1"
+    "task_id": "1",
+    "name": "Walk dog",
+    "column": "backlog"
   },
   {
-    "id": "1",
-    "title": "Task B",
-    "columnId": "1"
+    "task_id": "2",
+    "name": "Have breakfast",
+    "column": "backlog"
   },
   {
-    "id": "2",
-    "title": "Task C",
-    "columnId": "2"
+    "task_id": "3",
+    "name": "Read book",
+    "column": "backlog"
   },
   {
-    "id": "3",
-    "title": "Task D",
-    "columnId": "2"
+    "task_id": "4",
+    "name": "Do laundry",
+    "column": "upnext"
   },
   {
-    "id": "4",
-    "title": "Task E",
-    "columnId": "3"
+    "task_id": "5",
+    "name": "Take shower",
+    "column": "upnext"
   },
   {
-    "id": "5",
-    "title": "Task F",
-    "columnId": "4"
+    "task_id": "6",
+    "name": "Brush teeth",
+    "column": "doing"
+  },
+  {
+    "task_id": "7",
+    "name": "Play videogames",
+    "column": "doing"
+  },
+  {
+    "task_id": "8",
+    "name": "Drink coffee",
+    "column": "done"
+  },
+  {
+    "task_id": "9",
+    "name": "Order pizza",
+    "column": "done"
   }
 ]
