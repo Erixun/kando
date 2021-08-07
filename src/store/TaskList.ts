@@ -6,8 +6,12 @@ import ITaskList from "./interface/ITaskList";
 export default class TaskList implements ITaskList {
   tasks: ITask[] = [];
 
-  insert(task: ITask, pos?: number): void {
-    pos ? this.tasks.splice(pos > 0 ? pos - 1 : 0, 0, task) : this.tasks.push(task);
+  insert(task: ITask, pos: number): void {
+    this.tasks.splice(pos, 0, task)
+  }
+
+  add(task: ITask): void {
+    this.tasks.unshift(task)
   }
 
   remove(id: string): void {

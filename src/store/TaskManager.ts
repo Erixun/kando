@@ -1,6 +1,7 @@
 import axios from "axios";
 import { singleton } from "tsyringe";
 import ITask from "./interface/ITask";
+import Task from "./Task";
 import taskStore from "./TaskStore";
 
 @singleton()
@@ -24,21 +25,31 @@ export default class TaskManager {
       .finally(() => this.distributeTasks());
   }
 
-  find(taskId: string): ITask | undefined {
-    return this.store.all.tasks.find((t) => t.task_id == taskId)
+  find(taskId: string, column = "all"): ITask | undefined {
+    return this.store[column].tasks.find((t) => t.task_id == taskId)
   }
 
-  moveTask(task: ITask, columnId: string, position?: number) {
+  moveTask(task: ITask, columnId: string, position: number) {
     const origin = this.store[task.column]
     
     origin.remove(task.task_id)
-
+    
     if (task.column != columnId) {
       task.column = columnId;
     } //@TODO: PUT to database
     const target = this.store[columnId]
-    target.insert(task, position); //@TODO: PUT to database
-    console.log(origin.tasks)
+    target.insert(task, position); //@TODO: PUT to database, reorder?
+  }
+
+  addTask(columnId: string) {
+    const target = this.store[columnId];
+    const newTask = new Task(columnId)
+    target.add(newTask);
+  }
+
+  deleteTask(columnId: string, taskId: string) {
+    const target = this.store[columnId]
+    target.remove(taskId)
   }
 
   private distributeTasks(): void {
