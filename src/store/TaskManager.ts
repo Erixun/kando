@@ -44,12 +44,12 @@ export default class TaskManager {
   addTask(columnId: string): void {
     const target = this.store[columnId];
     const newTask = new Task(columnId);
-    target.add(newTask); //@TODO: POST to database
+    target.add(newTask); //@TODO: POST to database w null id, reorder?
   }
 
   deleteTask(columnId: string, taskId: string): void {
     const target = this.store[columnId];
-    target.remove(taskId);
+    target.remove(taskId); //@TODO: DELETE to database, reorder?
   }
 
   private distributeTasks(): void {
