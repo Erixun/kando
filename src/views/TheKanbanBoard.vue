@@ -42,7 +42,6 @@ main {
   overflow-x: scroll;
 
   .column {
-    border: 1px solid gray;
     min-width: 240px;
     width: 22vw;
     max-width: 330px;
