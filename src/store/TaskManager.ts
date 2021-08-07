@@ -44,7 +44,7 @@ export default class TaskManager {
   addTask(columnId: string): void {
     const target = this.store[columnId];
     const newTask = new Task(columnId);
-    target.add(newTask);
+    target.add(newTask); //@TODO: POST to database
   }
 
   deleteTask(columnId: string, taskId: string): void {
