@@ -15,9 +15,6 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "TheHeader",
-  // setup() {
-
-  // },
 });
 </script>
 
@@ -27,5 +24,9 @@ header {
   grid-template-columns: 1fr 5fr;
   grid-gap: 10vw;
   padding-left: 0.5rem;
+
+  h1 {
+    font-style: italic;
+  }
 }
 </style>
