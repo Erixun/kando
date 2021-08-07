@@ -5,9 +5,9 @@ export default class Task implements ITask {
   name: string;
   column: string;
 
-  constructor(column:  string) {
+  constructor(column: string) {
     this.task_id = "new";
-    this.name = ""
-    this.column = column
+    this.name = "";
+    this.column = column;
   }
 }

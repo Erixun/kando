@@ -26,30 +26,30 @@ export default class TaskManager {
   }
 
   find(taskId: string, column = "all"): ITask | undefined {
-    return this.store[column].tasks.find((t) => t.task_id == taskId)
+    return this.store[column].tasks.find((t) => t.task_id == taskId);
   }
 
-  moveTask(task: ITask, columnId: string, position: number) {
-    const origin = this.store[task.column]
-    
-    origin.remove(task.task_id)
-    
+  moveTask(task: ITask, columnId: string, position: number): void {
+    const origin = this.store[task.column];
+
+    origin.remove(task.task_id);
+
     if (task.column != columnId) {
       task.column = columnId;
     } //@TODO: PUT to database
-    const target = this.store[columnId]
+    const target = this.store[columnId];
     target.insert(task, position); //@TODO: PUT to database, reorder?
   }
 
-  addTask(columnId: string) {
+  addTask(columnId: string): void {
     const target = this.store[columnId];
-    const newTask = new Task(columnId)
+    const newTask = new Task(columnId);
     target.add(newTask);
   }
 
-  deleteTask(columnId: string, taskId: string) {
-    const target = this.store[columnId]
-    target.remove(taskId)
+  deleteTask(columnId: string, taskId: string): void {
+    const target = this.store[columnId];
+    target.remove(taskId);
   }
 
   private distributeTasks(): void {

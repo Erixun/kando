@@ -7,11 +7,11 @@ export default class TaskList implements ITaskList {
   tasks: ITask[] = [];
 
   insert(task: ITask, pos: number): void {
-    this.tasks.splice(pos, 0, task)
+    this.tasks.splice(pos, 0, task);
   }
 
   add(task: ITask): void {
-    this.tasks.unshift(task)
+    this.tasks.unshift(task);
   }
 
   remove(id: string): void {
