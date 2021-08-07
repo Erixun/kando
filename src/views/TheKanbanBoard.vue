@@ -1,16 +1,18 @@
 <template>
   <main>
-    <base-column :title=ColumnTitle.A />
-    <base-column :title=ColumnTitle.B />
-    <base-column :title=ColumnTitle.C />
-    <base-column :title=ColumnTitle.D />
+    <base-column :data="taskStore.backlog" id="backlog" />
+    <base-column :data="taskStore.upnext" id="upnext" />
+    <base-column :data="taskStore.doing" id="doing" />
+    <base-column :data="taskStore.done" id="done" />
   </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import BaseColumn from "@/components/BaseColumn.vue"
-import { ColumnTitle } from "@/components/columnTitle"
+import BaseColumn from "@/components/BaseColumn.vue";
+import taskStore from "@/store/TaskStore";
+import { container } from "tsyringe";
+import TaskManager from "@/store/TaskManager";
 
 export default defineComponent({
   name: "TheKanbanBoard",
@@ -21,8 +23,11 @@ export default defineComponent({
       required: false,
     },
   },
-  setup(props) {
-    return {props, ColumnTitle};
+  async created() {
+    container.resolve(TaskManager).clearStore().fetchTasks();
+  },
+  setup() {
+    return { taskStore };
   },
 });
 </script>
@@ -31,7 +36,7 @@ export default defineComponent({
 main {
   display: flex;
   min-height: 90vh;
-  justify-content: start;
+  justify-content: flex-start;
   gap: 2vw;
   padding: 15px;
   overflow-x: scroll;
