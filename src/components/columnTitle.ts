@@ -1,6 +1,6 @@
-export const ColumnTitle = {
-  A: "Backlog",
-  B: "Up Next",
-  C: "Doing",
-  D: "Done",
+export const ColumnTitle: { [index: string]: string } = {
+  backlog: "Backlog",
+  upnext: "Up Next",
+  doing: "Doing",
+  done: "Done",
 };
