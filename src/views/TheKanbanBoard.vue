@@ -24,7 +24,7 @@ export default defineComponent({
     },
   },
   async created() {
-    container.resolve(TaskManager).clearStore().fetchTasks();
+    container.resolve(TaskManager).setup();
   },
   setup() {
     return { taskStore };

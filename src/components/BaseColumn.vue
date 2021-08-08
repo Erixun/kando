@@ -129,7 +129,6 @@ export default defineComponent({
       );
       const filtered = nodes.filter((el) => el.className != "dragged");
       const position = filtered.indexOf(placeHolder);
-      console.log(position);
       return position;
     };
 
