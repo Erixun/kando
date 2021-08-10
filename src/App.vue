@@ -15,6 +15,10 @@ export default defineComponent({
 <style lang="scss">
 $kando-lightblue: #a7e9fd;
 
+body {
+  margin: 0;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -27,9 +31,6 @@ header {
   background-color: $kando-lightblue;
 
   #nav {
-    padding: 30px;
-    justify-self: left;
-
     a {
       font-weight: bold;
       color: #2c3e50;

@@ -1,3 +1,3 @@
-type ColString = "backlog" | "upnext" | "doing" | "done"
+type ColString = "backlog" | "upnext" | "doing" | "done";
 
-export default ColString
+export default ColString;

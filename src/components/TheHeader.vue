@@ -23,10 +23,17 @@ header {
   display: grid;
   grid-template-columns: 1fr 5fr;
   grid-gap: 10vw;
-  padding-left: 0.5rem;
+  padding: 5px;
 
   h1 {
     font-style: italic;
+    padding-left: 5px;
+    margin: 0;
+  }
+  #nav {
+    padding: 5px;
+    justify-self: left;
+    align-self: center;
   }
 }
 </style>
