@@ -1,15 +1,25 @@
 import { container } from "tsyringe";
 import { reactive } from "vue";
-import TaskList from "./TaskList";
+import Column, {
+  IColumn,
+  ITaskRepository,
+  TaskBase,
+  TaskMap,
+} from "./TaskList";
 
-export type IndexedTasks = { [index: string]: TaskList };
+export const all = Symbol("key for main repository of tasks");
 
-export const taskStore: IndexedTasks = {
-  all: reactive(container.resolve(TaskList)),
-  backlog: reactive(container.resolve(TaskList)),
-  upnext: reactive(container.resolve(TaskList)),
-  doing: reactive(container.resolve(TaskList)),
-  done: reactive(container.resolve(TaskList)),
+export type IndexedTasks = {
+  readonly [index: string]: IColumn;
+  readonly [all]: ITaskRepository<TaskMap>;
 };
 
-export default taskStore;
+export const TaskStore: IndexedTasks = {
+  [all]: reactive(container.resolve(TaskBase)),
+  backlog: reactive(container.resolve(Column)),
+  upnext: reactive(container.resolve(Column)),
+  doing: reactive(container.resolve(Column)),
+  done: reactive(container.resolve(Column)),
+};
+
+export default TaskStore;

@@ -47,27 +47,24 @@ import TaskManager from "@/store/TaskManager";
 import { container } from "tsyringe";
 import { computed, defineComponent, onUpdated } from "vue";
 import { ColumnTitle } from "./columnTitle";
-import { taskStore } from "@/store/TaskStore";
+import ColString from "@/store/types/ColString";
 
 export default defineComponent({
   name: "BaseColumn",
   props: {
-    data: {
-      type: Object,
-      required: true,
-    },
     id: {
       type: String,
       required: true,
     },
   },
   setup(props) {
+    const taskManager = container.resolve(TaskManager);
+
     const handleNewTask = () => {
       const newCardInput = document.getElementById(
         "inputnew"
       ) as HTMLInputElement;
       if (newCardInput) {
-        const taskManager = container.resolve(TaskManager);
         if (newCardInput.value == "") {
           taskManager.deleteTask(props.id, "new");
         } else {
@@ -91,10 +88,16 @@ export default defineComponent({
         newInput.addEventListener("focusout", () => handleNewTask());
         newInput.focus();
       }
+      //get the order (id's) of tasks in this column
+      const nodes = Array.prototype.slice
+        .call(document.getElementById(props.id)?.children)
+        .map((el) => el.id)
+        .filter((id) => !["", "new"].includes(id)); //filter out the placeholder & empty task
+
+      taskManager.reorder(props.id as ColString, nodes);
     });
 
     const addNewCard = (columnId: string) => {
-      const taskManager = container.resolve(TaskManager);
       taskManager.addTask(columnId);
     };
 
@@ -166,7 +169,6 @@ export default defineComponent({
       const taskID = localStorage.getItem("taskID");
       if (!taskID) return;
 
-      const taskManager = container.resolve(TaskManager);
       const task = taskManager.find(taskID);
       if (!task) return;
 
@@ -197,7 +199,7 @@ export default defineComponent({
 
     return {
       headerText: computed(() => ColumnTitle[props.id]),
-      columnTasks: computed(() => taskStore[props.id].tasks),
+      columnTasks: computed(() => taskManager.taskStore[props.id].tasks),
       columnId: props.id,
       addNewCard,
       putPlaceHolder,
@@ -248,7 +250,6 @@ header:hover button {
 }
 
 .tasks {
-  padding: 10px 10px;
   flex: max-content;
 
   .task-list {

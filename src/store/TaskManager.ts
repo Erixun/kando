@@ -3,22 +3,25 @@ import axios from "axios";
 import { container, singleton } from "tsyringe";
 import ITask from "./interface/ITask";
 import Task from "./Task";
-import TaskStore from "./TaskStore";
-import ColString from "./types/ColString";
+import TaskStore, { all } from "./TaskStore";
 import IOrderStore from "./interface/IOrderStore";
 import OrderStore from "./OrderStore";
+import ColString from "./types/ColString";
 
 @singleton()
 export default class TaskManager {
   readonly taskStore = TaskStore;
   readonly orderStore: IOrderStore = container.resolve(OrderStore);
 
-  setup() {
-    this.clearStore().fetchTasks()
+  setup(): void {
+    this.clearStore().fetchTasks();
   }
 
   private clearStore(): this {
-    Object.keys(this.taskStore).forEach((key) => (this.taskStore[key].tasks = []));
+    Object.keys(this.taskStore).forEach((key) => {
+      const container = this.taskStore[key];
+      if (container.type === "Column") container.from([]);
+    });
     return this;
   }
 
@@ -26,34 +29,51 @@ export default class TaskManager {
     axios
       .get(`./tasks.json`)
       .then((resp) => {
-        this.taskStore.all.tasks = resp.data;
+        this.taskStore[all].from(resp.data);
       })
       .catch((err: Error) => {
         console.log("There was a problem: " + err.message);
-      }).finally(() => this.fetchOrder())
+      })
+      .finally(() => this.fetchOrder());
   }
 
   private fetchOrder(): void {
-    axios.get(`./reorder.json`).then(resp => {
-      Object.keys(resp.data).forEach(key => {
-        this.orderStore[key as ColString] = resp.data[key]
+    axios
+      .get(`./reorder.json`)
+      .then((resp) => {
+        Object.keys(resp.data).forEach((key) => {
+          this.orderStore[key as ColString] = resp.data[key];
+        });
       })
-    }).catch((err: Error) => {
-      console.log(err.message)
-    }).finally(() => this.distributeTasks())
+      .catch((err: Error) => {
+        console.log(err.message);
+      })
+      .finally(() => this.distributeTasks());
   }
 
   private distributeTasks() {
-    const all = TaskStore.all
-    const keys = Object.keys(this.orderStore)
-    keys.forEach(columnKey => {
-      const ordered = this.orderStore[columnKey as ColString].map(id => all.task(id)!)
-      TaskStore[columnKey].tasks = [...ordered]
-    })
+    const allTasks = TaskStore[all];
+    const keys = Object.keys(this.orderStore);
+    keys.forEach((columnKey) => {
+      const ordered = this.orderStore[columnKey as ColString].map((id) =>
+        allTasks.get(id)
+      );
+      TaskStore[columnKey].from(ordered);
+    });
   }
 
-  reorder(column: ColString, order: string[]) {
-    this.orderStore[column] = order
+  /**
+   * Updates task order whenever order of tasks changes in column(s).
+   * @param column The column in which the task is placed.
+   * @param order The new order of tasks within the column.
+   */
+  reorder(column: ColString, order: string[]): void {
+    const hasChanged =
+      JSON.stringify(this.orderStore[column]) != JSON.stringify(order);
+    if (hasChanged) {
+      this.orderStore[column] = order;
+      // axios.put('./reorder.json', this.orderStore[column])
+    }
   }
 
   /**
@@ -62,8 +82,8 @@ export default class TaskManager {
    * @param column The column where the task is placed, default "all".
    * @returns Task
    */
-  find(taskId: string, column = "all"): ITask | undefined {
-    return this.taskStore[column].tasks.find((t) => t.task_id == taskId);
+  find(taskId: string, column?: string): ITask | undefined {
+    return this.taskStore[column ?? all].get(taskId);
   }
 
   moveTask(task: ITask, columnId: string, position: number): void {
@@ -88,10 +108,13 @@ export default class TaskManager {
     const target = this.taskStore[columnId];
     target.remove(taskId);
     //@TODO: DELETE to database, reorder?
-    axios.delete(`tasks/${taskId}`).then((resp) => {
-      console.log("task deleted with response " + resp)
-    }).catch((err: Error) => {
-      console.log(err.message)
-    })
+    // axios
+    //   .delete(`tasks/${taskId}`)
+    //   .then((resp) => {
+    //     console.log("task deleted with response " + resp);
+    //   })
+    //   .catch((err: Error) => {
+    //     console.log(err.message);
+    //   });
   }
 }
