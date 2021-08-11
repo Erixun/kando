@@ -1,5 +1,5 @@
 import { singleton } from "tsyringe";
-import { ColKey } from "./constant/ColKey";
+import { ColKey } from "./constant";
 import IOrderStore from "./interface/IOrderStore";
 import ColString from "./types/ColString";
 

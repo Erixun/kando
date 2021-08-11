@@ -3,15 +3,15 @@ import axios from "axios";
 import { container, singleton } from "tsyringe";
 import ITask from "./interface/ITask";
 import Task from "./Task";
-import TaskStore, { all } from "./TaskStore";
-import IOrderStore from "./interface/IOrderStore";
+import TaskStore from "./TaskStore";
 import OrderStore from "./OrderStore";
 import ColString from "./types/ColString";
+import all from "./constant/All";
 
 @singleton()
 export default class TaskManager {
   readonly taskStore = TaskStore;
-  readonly orderStore: IOrderStore = container.resolve(OrderStore);
+  readonly orderStore = container.resolve(OrderStore);
 
   setup(): void {
     this.clearStore().fetchTasks();
@@ -19,7 +19,7 @@ export default class TaskManager {
 
   private clearStore(): this {
     Object.keys(this.taskStore).forEach((key) => {
-      const container = this.taskStore[key];
+      const container = this.taskStore[key as ColString];
       if (container.type === "Column") container.from([]);
     });
     return this;
@@ -58,7 +58,7 @@ export default class TaskManager {
       const ordered = this.orderStore[columnKey as ColString].map((id) =>
         allTasks.get(id)
       );
-      TaskStore[columnKey].from(ordered);
+      TaskStore[columnKey as ColString].from(ordered);
     });
   }
 
@@ -67,11 +67,12 @@ export default class TaskManager {
    * @param column The column in which the task is placed.
    * @param order The new order of tasks within the column.
    */
-  reorder(column: ColString, order: string[]): void {
+  reorder(column: string, order: string[]): void {
     const hasChanged =
-      JSON.stringify(this.orderStore[column]) != JSON.stringify(order);
+      JSON.stringify(this.orderStore[column as ColString]) !=
+      JSON.stringify(order);
     if (hasChanged) {
-      this.orderStore[column] = order;
+      this.orderStore[column as ColString] = order;
       // axios.put('./reorder.json', this.orderStore[column])
     }
   }
@@ -83,29 +84,29 @@ export default class TaskManager {
    * @returns Task
    */
   find(taskId: string, column?: string): ITask | undefined {
-    return this.taskStore[column ?? all].get(taskId);
+    return this.taskStore[(column as ColString) ?? all].get(taskId);
   }
 
   moveTask(task: ITask, columnId: string, position: number): void {
-    const origin = this.taskStore[task.column];
+    const origin = this.taskStore[task.column as ColString];
 
     origin.remove(task.task_id);
 
     if (task.column != columnId) {
-      task.column = columnId;
+      task.column = columnId as ColString;
     } //@TODO: PUT to database
-    const target = this.taskStore[columnId];
+    const target = this.taskStore[columnId as ColString];
     target.insert(task, position); //@TODO: PUT to database, reorder?
   }
 
   addTask(columnId: string): void {
-    const target = this.taskStore[columnId];
-    const newTask = new Task(columnId);
+    const target = this.taskStore[columnId as ColString];
+    const newTask = new Task(columnId as ColString);
     target.add(newTask); //@TODO: POST to database w null id, reorder?
   }
 
   deleteTask(columnId: string, taskId: string): void {
-    const target = this.taskStore[columnId];
+    const target = this.taskStore[columnId as ColString];
     target.remove(taskId);
     //@TODO: DELETE to database, reorder?
     // axios

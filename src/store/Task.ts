@@ -1,11 +1,12 @@
 import ITask from "./interface/ITask";
+import { ColString } from "./types";
 
 export default class Task implements ITask {
   task_id: string;
   name: string;
-  column: string;
+  column: ColString;
 
-  constructor(column: string) {
+  constructor(column: ColString) {
     this.task_id = "new";
     this.name = "";
     this.column = column;
