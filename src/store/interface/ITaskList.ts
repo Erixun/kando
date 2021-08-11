@@ -1,4 +1,4 @@
-import ITask from "./ITask";
+import { ITask } from ".";
 
 export default interface ITaskList {
   insert(task: ITask, index?: number): void;

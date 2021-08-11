@@ -1,4 +1,4 @@
-import { ColKey } from "../constant/ColKey";
+import { ColKey } from "../constant";
 
 export default interface IOrderStore {
   [ColKey.Backlog]: string[];
