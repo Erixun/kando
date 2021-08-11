@@ -46,8 +46,8 @@ import ITask from "@/store/interface/ITask";
 import TaskManager from "@/store/TaskManager";
 import { container } from "tsyringe";
 import { computed, defineComponent, onUpdated } from "vue";
-import { ColumnTitle } from "./columnTitle";
 import ColString from "@/store/types/ColString";
+import { ColKey, ColumnTitle } from "@/store/constant";
 
 export default defineComponent({
   name: "BaseColumn",
@@ -55,6 +55,17 @@ export default defineComponent({
     id: {
       type: String,
       required: true,
+      validator: (value: string) => {
+        switch (value) {
+          case ColKey.Backlog:
+          case ColKey.UpNext:
+          case ColKey.Doing:
+          case ColKey.Done:
+            return true;
+          default:
+            return false;
+        }
+      },
     },
   },
   setup(props) {
@@ -199,7 +210,9 @@ export default defineComponent({
 
     return {
       headerText: computed(() => ColumnTitle[props.id]),
-      columnTasks: computed(() => taskManager.taskStore[props.id].tasks),
+      columnTasks: computed(
+        () => taskManager.taskStore[props.id as ColString].tasks
+      ),
       columnId: props.id,
       addNewCard,
       putPlaceHolder,
