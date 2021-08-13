@@ -5,18 +5,17 @@
         {{ headerText }}
       </h4>
       <div class="btn-wrapper">
-        <button>+</button>
+        <button class="add-btn">+</button>
       </div>
     </header>
-    <section class="tasks">
-      <ul
-        class="task-list"
-        dropzone="true"
-        :id="columnId"
-        @drop.prevent="onDrop(columnId)"
-        @dragover.prevent
-        @dragenter.prevent="putPlaceHolder()"
-      >
+    <section
+      class="tasks"
+      dropzone="true"
+      @drop.prevent="onDrop(columnId)"
+      @dragover.prevent
+      @dragenter.prevent="putPlaceHolder()"
+    >
+      <ul :id="columnId" class="task-list">
         <li
           v-for="(task, i) in columnTasks"
           :key="task.task_id"
@@ -229,6 +228,7 @@ export default defineComponent({
 .column {
   display: flex;
   flex-direction: column;
+  overflow: auto;
 }
 header {
   position: relative;
@@ -238,19 +238,20 @@ header > h4 {
   font-weight: bold;
   margin: 0;
   padding: 5px;
+  overflow: hidden;
 }
 
-header:hover button {
+header:hover .add-btn {
   opacity: unset;
 }
 
 .btn-wrapper {
   position: absolute;
-  top: -2px;
+  top: -3px;
   height: 100%;
-  right: 6px;
+  right: 25%;
 
-  button {
+  .add-btn {
     cursor: pointer;
     opacity: 0;
     border: none;
@@ -266,22 +267,22 @@ header:hover button {
   flex: max-content;
 
   .task-list {
-    height: 100%;
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 5px;
     display: grid;
     grid-auto-rows: min-content;
 
     .task {
+      background-color: #fff;
       cursor: pointer;
       text-align: left;
       min-height: 1rem;
       padding: 5px;
       border-radius: 2px;
-      box-shadow: 0 0 1px 1px lightgray;
-      transition-duration: 100ms;
-
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1),
+        0 2px 8px rgba(0, 0, 0, 0.1);
+        
       input {
         cursor: pointer;
         border: none;
@@ -303,16 +304,5 @@ header:hover button {
     transition-duration: 100ms;
     padding: 4px 0;
   }
-}
-</style>
-<style lang="scss">
-.placeholder {
-  border-radius: 2px;
-  background-color: #d3d3d3cc;
-  opacity: 0.5;
-  border-width: 2px 0;
-  border-style: solid;
-  border-color: white;
-  transition-duration: 100ms;
 }
 </style>
