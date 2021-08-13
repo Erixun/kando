@@ -233,6 +233,9 @@ export default defineComponent({
 header {
   position: relative;
   cursor: pointer;
+  background: white;
+  position: sticky;
+  top: 0;
 }
 header > h4 {
   font-weight: bold;
@@ -274,15 +277,12 @@ header:hover .add-btn {
     grid-auto-rows: min-content;
 
     .task {
-      background-color: #fff;
       cursor: pointer;
       text-align: left;
       min-height: 1rem;
       padding: 5px;
       border-radius: 2px;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1),
-        0 2px 8px rgba(0, 0, 0, 0.1);
-        
+
       input {
         cursor: pointer;
         border: none;
@@ -292,9 +292,6 @@ header:hover .add-btn {
       input:focus {
         outline: none;
       }
-    }
-    .task:hover {
-      box-shadow: 0 1px 2px 2px lightgray;
     }
   }
   .hide {
