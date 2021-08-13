@@ -233,14 +233,15 @@ export default defineComponent({
 header {
   position: relative;
   cursor: pointer;
-  background: white;
   position: sticky;
   top: 0;
 }
 header > h4 {
+  text-align: left;
   font-weight: bold;
   margin: 0;
   padding: 5px;
+  margin-left: 2px;
   overflow: hidden;
 }
 
@@ -248,22 +249,17 @@ header:hover .add-btn {
   opacity: unset;
 }
 
-.btn-wrapper {
+.add-btn {
+  cursor: pointer;
+  opacity: 0;
+  border: none;
+  background: transparent;
+  color: #42b983;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition-duration: 200ms;
   position: absolute;
-  top: -3px;
-  height: 100%;
-  right: 25%;
-
-  .add-btn {
-    cursor: pointer;
-    opacity: 0;
-    border: none;
-    background: transparent;
-    color: #42b983;
-    font-size: 1.5rem;
-    font-weight: bold;
-    transition-duration: 200ms;
-  }
+  top: -4px;
 }
 
 .tasks {
