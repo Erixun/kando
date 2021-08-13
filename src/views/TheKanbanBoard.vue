@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div id="drawer">
+    <div id="drawer" @dragenter="onDragEnter()">
       <base-column :id="backlog" />
       <button id="drawer-btn" @click="toggleClosed()"><span>|-></span></button>
     </div>
@@ -36,6 +36,13 @@ export default defineComponent({
       setTimeout(() => {
         drawer?.firstElementChild?.classList.toggle("hide");
       }, 200);
+    },
+    onDragEnter() {
+      const drawer = document.getElementById("drawer");
+
+      if (drawer?.classList?.contains("closed")) {
+        this.toggleClosed();
+      }
     },
   },
   setup() {
@@ -139,7 +146,7 @@ main {
   gap: 1.5vw;
   overflow: auto;
   margin: 0 auto;
-  
+
   header {
     background-color: #fff;
     box-shadow: $kando-boxshadow-fade white;
