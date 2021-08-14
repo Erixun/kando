@@ -254,7 +254,7 @@ header:hover .add-btn {
   opacity: 0;
   border: none;
   background: transparent;
-  color: #42b983;
+  color: var(--kando-green);
   font-size: 1.5rem;
   font-weight: bold;
   transition-duration: 200ms;
