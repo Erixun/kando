@@ -117,7 +117,7 @@ main {
 #drawer.closed:not(:hover) {
   min-width: 35px;
   width: 35px;
-  transition: 200ms;
+  transition: 500ms;
 
   #drawer-btn {
     transform: unset;
