@@ -14,7 +14,9 @@ export default defineComponent({
 
 <style lang="scss">
 $kando-beige: beige;
-$kando-green: green;
+:root {
+  --kando-green: #1d8a59;
+}
 $kando-lightblue: #cdf3ff;
 $kando-orange: #fff17e;
 $kando-defaultborder: 1px solid #80808057;
@@ -61,7 +63,7 @@ html {
       color: #2c3e50;
 
       &.router-link-exact-active {
-        color: #42b983;
+        color: var(--kando-green);
       }
     }
   }
@@ -73,8 +75,9 @@ html {
 
 .task {
   box-shadow: $kando-boxshadow10;
-  
-  input[type="text"], textarea {
+
+  input[type="text"],
+  textarea {
     background: inherit;
   }
 }
