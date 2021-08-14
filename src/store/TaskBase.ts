@@ -16,6 +16,10 @@ export default class TaskBase implements ITaskRepository<TaskMap> {
     console.log(this._tasks.get(task.task_id))
   }
 
+  remove(id: string) {
+    this._tasks.delete(id)
+  }
+
   from(values: ITask[]): void {
     this._tasks = new Map(
       values.map((task) => [task.task_id, task] as [string, ITask])

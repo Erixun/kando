@@ -7,4 +7,5 @@ export default interface ITaskRepository<R extends TaskRepo> {
   from(values: ITask[]): void;
   get(id: string): ITask;
   add(task: Task): void;
+  remove(id: string): void;
 }
