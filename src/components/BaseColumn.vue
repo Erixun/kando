@@ -74,28 +74,33 @@ export default defineComponent({
       const newCardInput = document.getElementById(
         "inputnew"
       ) as HTMLInputElement;
+
       if (newCardInput) {
+        newCardInput.removeEventListener("focusout", focusOutEvtListener)
+        const columnId = props.id
         if (newCardInput.value == "") {
-          taskManager.deleteTask(props.id, "new");
+          taskManager.deleteTask(columnId, "new");
         } else {
           const newCard = document.getElementById("new");
-          const task = taskManager.find("new", props.id);
+          const task = taskManager.find("new", columnId as ColString);
 
           if (newCard) {
-            const newId = Math.random().toString().substr(2, 8);
+            const newId = taskManager.nextId();
             newCard.id = newId;
             if (task) task.task_id = newId;
           }
         }
       }
-    };
+    }
+
+    const focusOutEvtListener = () => handleNewTask()
 
     onUpdated(() => {
       const newInput = document.getElementById("inputnew");
       const newCard = document.getElementById("new");
       if (newCard) newCard.draggable = false;
       if (newInput) {
-        newInput.addEventListener("focusout", () => handleNewTask());
+        newInput.addEventListener("focusout", focusOutEvtListener);
         newInput.focus();
       }
       //get the order (id's) of tasks in this column
