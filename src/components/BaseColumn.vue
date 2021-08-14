@@ -208,7 +208,7 @@ export default defineComponent({
     };
 
     return {
-      headerText: computed(() => ColumnTitle[props.id]),
+      headerText: ColumnTitle[props.id],
       columnTasks: computed(
         () => taskManager.taskStore[props.id as ColString].tasks
       ),
