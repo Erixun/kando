@@ -5,7 +5,7 @@ import { TColumn } from "./types";
 @injectable()
 export default class Column implements IColumn {
   static readonly _type: TColumn = "Column";
-  
+
   constructor(public _tasks: ITask[] = []) {}
 
   get tasks(): ITask[] {

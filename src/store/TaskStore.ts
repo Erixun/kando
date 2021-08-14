@@ -1,4 +1,4 @@
-import "reflect-metadata"
+import "reflect-metadata";
 import { container } from "tsyringe";
 import { reactive } from "vue";
 import All from "./constant/All";

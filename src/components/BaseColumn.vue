@@ -76,24 +76,27 @@ export default defineComponent({
       ) as HTMLInputElement;
 
       if (newCardInput) {
-        newCardInput.removeEventListener("focusout", focusOutEvtListener)
-        const columnId = props.id
-        if (newCardInput.value == "") {
+        newCardInput.removeEventListener("focusout", focusOutEvtListener);
+        const columnId = props.id;
+
+        if (newCardInput.value == String()) {
           taskManager.deleteTask(columnId, "new");
         } else {
           const newCard = document.getElementById("new");
           const task = taskManager.find("new", columnId as ColString);
+          taskManager.deleteTask(columnId, "new");
 
-          if (newCard) {
+          if (newCard && task) {
             const newId = taskManager.nextId();
             newCard.id = newId;
-            if (task) task.task_id = newId;
+            task.task_id = newId;
+            taskManager.persist(task);
           }
         }
       }
-    }
+    };
 
-    const focusOutEvtListener = () => handleNewTask()
+    const focusOutEvtListener = () => handleNewTask();
 
     onUpdated(() => {
       const newInput = document.getElementById("inputnew");
@@ -109,7 +112,7 @@ export default defineComponent({
         .map((el) => el.id)
         .filter((id) => !["", "new"].includes(id)); //filter out the placeholder & empty task
 
-      taskManager.reorder(props.id as ColString, nodes);
+      taskManager.updateOrder(props.id as ColString, nodes);
     });
 
     const addNewCard = (columnId: string) => {
@@ -215,6 +218,8 @@ export default defineComponent({
     return {
       headerText: ColumnTitle[props.id],
       columnTasks: computed(
+        //() => taskManager.distributeTasks(props.id as ColString)
+        // () => Array.from(taskManager.taskStore[All].tasks.values()).filter(task => task.column == props.id)
         () => taskManager.taskStore[props.id as ColString].tasks
       ),
       columnId: props.id,

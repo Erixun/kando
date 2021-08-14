@@ -6,18 +6,17 @@ import { TaskMap } from "./types";
 @singleton()
 export default class TaskBase implements ITaskRepository<TaskMap> {
   private _tasks: Map<string, ITask> = new Map<string, ITask>();
-  
+
   get tasks(): TaskMap {
     return this._tasks;
   }
-  
-  add(task: Task) {
-    this._tasks.set(task.task_id, task)
-    console.log(this._tasks.get(task.task_id))
+
+  add(task: Task): void {
+    this._tasks.set(task.task_id, task);
   }
 
-  remove(id: string) {
-    this._tasks.delete(id)
+  remove(id: string): void {
+    this._tasks.delete(id);
   }
 
   from(values: ITask[]): void {
