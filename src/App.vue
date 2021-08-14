@@ -14,8 +14,9 @@ export default defineComponent({
 
 <style lang="scss">
 $kando-beige: beige;
+$kando-green: #1d8a59;
 :root {
-  --kando-green: #1d8a59;
+  --kando-green: #{$kando-green};
 }
 $kando-lightblue: #cdf3ff;
 $kando-orange: #fff17e;
