@@ -6,12 +6,18 @@ import Task from "./Task";
 import TaskStore from "./TaskStore";
 import OrderStore from "./OrderStore";
 import ColString from "./types/ColString";
-import all from "./constant/All";
+import All from "./constant/All";
 
 @singleton()
 export default class TaskManager {
   readonly taskStore = TaskStore;
   readonly orderStore = container.resolve(OrderStore);
+  private lastId = 0;
+
+  nextId(): string {
+    this.lastId += 1;
+    return String(this.lastId);
+  };
 
   setup(): void {
     this.clearStore().fetchTasks();
@@ -29,7 +35,8 @@ export default class TaskManager {
     axios
       .get(`./tasks.json`)
       .then((resp) => {
-        this.taskStore[all].from(resp.data);
+        this.taskStore[All].from(resp.data);
+        this.lastId = this.taskStore[All].tasks.size; //@TODO: get the top id
       })
       .catch((err: Error) => {
         console.log("There was a problem: " + err.message);
@@ -51,15 +58,17 @@ export default class TaskManager {
       .finally(() => this.distributeTasks());
   }
 
-  private distributeTasks() {
-    const allTasks = TaskStore[all];
-    const keys = Object.keys(this.orderStore);
+  distributeTasks(): void {
+    const allTasks = TaskStore[All];
+    const keys = Object.keys(this.orderStore) as ColString[];
+    
     keys.forEach((columnKey) => {
-      const ordered = this.orderStore[columnKey as ColString].map((id) =>
+      const ordered = this.orderStore[columnKey].map((id) =>
         allTasks.get(id)
       );
-      TaskStore[columnKey as ColString].from(ordered);
+      TaskStore[columnKey].from(ordered);
     });
+
   }
 
   /**
@@ -67,7 +76,7 @@ export default class TaskManager {
    * @param column The column in which the task is placed.
    * @param order The new order of tasks within the column.
    */
-  reorder(column: string, order: string[]): void {
+  updateOrder(column: string, order: string[]): void {
     const hasChanged =
       JSON.stringify(this.orderStore[column as ColString]) !=
       JSON.stringify(order);
@@ -80,11 +89,11 @@ export default class TaskManager {
   /**
    * Finds a specific Task in a TaskList and returns it.
    * @param taskId The id of the Task.
-   * @param column The column where the task is placed, default "all".
+   * @param column The column where the task is placed, default "All".
    * @returns Task
    */
   find(taskId: string, column?: string): ITask | undefined {
-    return this.taskStore[(column as ColString) ?? all].get(taskId);
+    return this.taskStore[column ? (column as ColString) : All].get(taskId);
   }
 
   moveTask(task: ITask, columnId: string, position: number): void {
@@ -94,20 +103,29 @@ export default class TaskManager {
 
     if (task.column != columnId) {
       task.column = columnId as ColString;
+      this.taskStore[All].get(task.task_id).column = task.column;
     } //@TODO: PUT to database
     const target = this.taskStore[columnId as ColString];
     target.insert(task, position); //@TODO: PUT to database, reorder?
   }
 
-  addTask(columnId: string): void {
+  addTask(columnId?: string): void {
     const target = this.taskStore[columnId as ColString];
     const newTask = new Task(columnId as ColString);
     target.add(newTask); //@TODO: POST to database w null id, reorder?
+    this.taskStore[All].add(newTask);
+  }
+
+  persist(task: Task): void {
+    this.taskStore[task.column].add(task);
+    this.taskStore[All].add(task);
+    //@TODO: POST to database
   }
 
   deleteTask(columnId: string, taskId: string): void {
     const target = this.taskStore[columnId as ColString];
     target.remove(taskId);
+    this.taskStore[All].remove(taskId);
     //@TODO: DELETE to database, reorder?
     // axios
     //   .delete(`tasks/${taskId}`)
