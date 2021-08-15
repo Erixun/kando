@@ -1,10 +1,10 @@
 import { singleton } from "tsyringe";
-import { ITaskRepository } from "./interface";
+import { TaskRepository } from "./interface";
 import Task from "./Task";
 import { TaskMap } from "./types";
 
 @singleton()
-export default class TaskBase implements ITaskRepository<TaskMap> {
+export default class TaskBase implements TaskRepository<TaskMap> {
   private _tasks: Map<string, Task> = new Map<string, Task>();
 
   get tasks(): TaskMap {

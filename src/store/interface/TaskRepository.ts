@@ -1,7 +1,7 @@
 import { Task } from "..";
-import { TaskRepo } from "../types";
+import { TaskMap } from "../types";
 
-export default interface ITaskRepository<R extends TaskRepo> {
+export default interface TaskRepository<R extends TaskMap | Task[]> {
   readonly tasks: R;
   from(values: Task[]): void;
   get(id: string): Task;
