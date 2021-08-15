@@ -1,11 +1,9 @@
 import { injectable } from "tsyringe";
-import { IColumn } from "./interface";
+import { TaskRepository, Typed } from "./interface";
 import Task from "./Task";
-import { TColumn } from "./types";
 
 @injectable()
-export default class Column implements IColumn {
-  static readonly _type: TColumn = "Column";
+export default class Column implements TaskRepository<Task[]>, Typed {
 
   constructor(public _tasks: Task[] = []) {}
 
@@ -13,8 +11,8 @@ export default class Column implements IColumn {
     return this._tasks;
   }
 
-  get type(): TColumn {
-    return Column._type;
+  get type(): string {
+    return this.constructor.name;
   }
 
   from(values: Task[]): void {
