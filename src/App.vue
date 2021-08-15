@@ -17,6 +17,7 @@ $kando-beige: beige;
 $kando-green: #1d8a59;
 :root {
   --kando-green: #{$kando-green};
+  --kando-taskborder: 1px solid rgba(0,0,0,0.1);
 }
 $kando-lightblue: #cdf3ff;
 $kando-orange: #fff17e;
@@ -76,6 +77,7 @@ html {
 
 .task {
   box-shadow: $kando-boxshadow10;
+  border: var(--kando-taskborder);
 
   input[type="text"],
   textarea {
