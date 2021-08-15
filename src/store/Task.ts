@@ -1,6 +1,6 @@
 import { ColKey } from "./constant";
 
-export default class {
+export default class Task {
   task_id: string;
   name: string;
   column: ColKey;

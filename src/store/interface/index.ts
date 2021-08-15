@@ -1,6 +1,4 @@
-import IColumn from "../Column";
-import IOrderStore from "./IOrderStore";
 import TaskRepository from "./TaskRepository";
-import IType from "./IType";
+import Typed from "./Typed";
 
-export { IOrderStore, TaskRepository, IType, IColumn };
+export { TaskRepository, Typed };
