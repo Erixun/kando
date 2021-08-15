@@ -238,7 +238,6 @@ export default defineComponent({
   overflow: auto;
 }
 header {
-  position: relative;
   cursor: pointer;
   position: sticky;
   top: 0;
@@ -265,8 +264,7 @@ header:hover .add-btn {
   font-size: 1.5rem;
   font-weight: bold;
   transition-duration: 200ms;
-  position: absolute;
-  top: -4px;
+  line-height: 23px;
 }
 
 .tasks {
