@@ -1,14 +1,13 @@
-import "reflect-metadata";
 import { container } from "tsyringe";
 import { reactive } from "vue";
 import All from "./constant/All";
 import { ITaskRepository } from "./interface";
 import Column from "./Column";
 import { TaskMap } from "./types";
-import TColIndex from "./types/TColIndex";
 import { TaskBase } from ".";
+import { ColKey } from "./constant";
 
-export type IndexedTasks = TColIndex<Column> & {
+export type IndexedTasks = Record<ColKey, Column> & {
   readonly [All]: ITaskRepository<TaskMap>;
 };
 

@@ -1,11 +1,8 @@
 import { singleton } from "tsyringe";
 import { ColKey } from "./constant";
-import IOrderStore from "./interface/IOrderStore";
-import ColString from "./types/ColString";
-
 @singleton()
 export default class OrderStore
-  implements Record<ColString, string[]>, IOrderStore
+  implements Record<ColKey, string[]>
 {
   [ColKey.Backlog]: string[];
   [ColKey.UpNext]: string[];

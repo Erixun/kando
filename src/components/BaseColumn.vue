@@ -41,12 +41,11 @@
 </template>
 
 <script lang="ts">
-import ITask from "@/store/interface/ITask";
 import TaskManager from "@/store/TaskManager";
 import { container } from "tsyringe";
 import { computed, defineComponent, onUpdated } from "vue";
-import ColString from "@/store/types/ColString";
 import { ColKey, ColumnTitle } from "@/store/constant";
+import { Task } from "@/store";
 
 export default defineComponent({
   name: "BaseColumn",
@@ -83,7 +82,7 @@ export default defineComponent({
           taskManager.deleteTask(columnId, "new");
         } else {
           const newCard = document.getElementById("new");
-          const task = taskManager.find("new", columnId as ColString);
+          const task = taskManager.find("new", columnId as ColKey);
           taskManager.deleteTask(columnId, "new");
 
           if (newCard && task) {
@@ -112,7 +111,7 @@ export default defineComponent({
         .map((el) => el.id)
         .filter((id) => !["", "new"].includes(id)); //filter out the placeholder & empty task
 
-      taskManager.updateOrder(props.id as ColString, orderedIds);
+      taskManager.updateOrder(props.id as ColKey, orderedIds);
     });
 
     const addNewCard = (columnId: string) => {
@@ -158,7 +157,7 @@ export default defineComponent({
       if (placeHolder) placeHolder.remove();
     };
 
-    const onDrag = (event: DragEvent, task: ITask) => {
+    const onDrag = (event: DragEvent, task: Task) => {
       const el = document.getElementById(`${task.task_id}`);
       if (!el) return;
 
@@ -218,9 +217,7 @@ export default defineComponent({
     return {
       headerText: ColumnTitle[props.id],
       columnTasks: computed(
-        //() => taskManager.distributeTasks(props.id as ColString)
-        // () => Array.from(taskManager.taskStore[All].tasks.values()).filter(task => task.column == props.id)
-        () => taskManager.taskStore[props.id as ColString].tasks
+        () => taskManager.taskStore[props.id as ColKey].tasks
       ),
       columnId: props.id,
       addNewCard,

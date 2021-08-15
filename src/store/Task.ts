@@ -1,11 +1,11 @@
-import { ColString } from "./types";
+import { ColKey } from "./constant";
 
-export default class {// Task implements ITask {
+export default class {
   task_id: string;
   name: string;
-  column: ColString;
+  column: ColKey;
 
-  constructor(column: ColString) {
+  constructor(column: ColKey) {
     this.task_id = "new";
     this.name = "";
     this.column = column;
