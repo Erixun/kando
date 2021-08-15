@@ -1,14 +1,15 @@
 import { injectable } from "tsyringe";
-import { IColumn, ITask } from "./interface";
+import { IColumn } from "./interface";
+import Task from "./Task";
 import { TColumn } from "./types";
 
 @injectable()
 export default class Column implements IColumn {
   static readonly _type: TColumn = "Column";
 
-  constructor(public _tasks: ITask[] = []) {}
+  constructor(public _tasks: Task[] = []) {}
 
-  get tasks(): ITask[] {
+  get tasks(): Task[] {
     return this._tasks;
   }
 
@@ -16,21 +17,21 @@ export default class Column implements IColumn {
     return Column._type;
   }
 
-  from(values: ITask[]): void {
+  from(values: Task[]): void {
     this._tasks = values;
   }
 
-  get(id: string): ITask {
+  get(id: string): Task {
     const found = this._tasks.find((t) => t.task_id == id);
     if (!found) throw Error(`task with id ${id} not found`);
     return found;
   }
 
-  insert(task: ITask, pos: number): void {
+  insert(task: Task, pos: number): void {
     this._tasks.splice(pos, 0, task);
   }
 
-  add(task: ITask): void {
+  add(task: Task): void {
     this._tasks.unshift(task);
   }
 

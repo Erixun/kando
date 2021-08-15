@@ -1,7 +1,6 @@
-import ITask from "./interface/ITask";
 import { ColString } from "./types";
 
-export default class Task implements ITask {
+export default class {// Task implements ITask {
   task_id: string;
   name: string;
   column: ColString;

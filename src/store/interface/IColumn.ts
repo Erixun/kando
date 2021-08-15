@@ -1,7 +1,8 @@
-import { ITask, ITaskList, ITaskRepository, IType } from ".";
+import { ITaskList, ITaskRepository, IType } from ".";
+import { Task } from "..";
 import { TColumn } from "../types";
 
 export default interface IColumn
-  extends ITaskRepository<ITask[]>,
+  extends ITaskRepository<Task[]>,
     ITaskList,
     IType<TColumn> {}

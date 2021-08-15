@@ -1,7 +1,6 @@
-import "reflect-metadata";
+// import "reflect-metadata";
 import axios from "axios";
 import { container, singleton } from "tsyringe";
-import ITask from "./interface/ITask";
 import Task from "./Task";
 import TaskStore from "./TaskStore";
 import OrderStore from "./OrderStore";
@@ -92,11 +91,11 @@ export default class TaskManager {
    * @param column The column where the task is placed, default "All".
    * @returns Task
    */
-  find(taskId: string, column?: string): ITask | undefined {
+  find(taskId: string, column?: string): Task | undefined {
     return this.taskStore[column ? (column as ColString) : All].get(taskId);
   }
 
-  moveTask(task: ITask, columnId: string, position: number): void {
+  moveTask(task: Task, columnId: string, position: number): void {
     const origin = this.taskStore[task.column as ColString];
 
     origin.remove(task.task_id);

@@ -1,9 +1,9 @@
-import { ITask } from ".";
+import { Task } from "..";
 
 export default interface ITaskList {
-  insert(task: ITask, index?: number): void;
+  insert(task: Task, index?: number): void;
 
-  add(task: ITask): void;
+  add(task: Task): void;
 
   remove(id: string): void;
 }

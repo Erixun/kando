@@ -1,7 +1,0 @@
-import { ColString } from "../types";
-
-export default interface ITask {
-  task_id: string;
-  name: string;
-  column: ColString;
-}

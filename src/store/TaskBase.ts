@@ -1,11 +1,11 @@
 import { singleton } from "tsyringe";
-import { ITask, ITaskRepository } from "./interface";
+import { ITaskRepository } from "./interface";
 import Task from "./Task";
 import { TaskMap } from "./types";
 
 @singleton()
 export default class TaskBase implements ITaskRepository<TaskMap> {
-  private _tasks: Map<string, ITask> = new Map<string, ITask>();
+  private _tasks: Map<string, Task> = new Map<string, Task>();
 
   get tasks(): TaskMap {
     return this._tasks;
@@ -19,12 +19,12 @@ export default class TaskBase implements ITaskRepository<TaskMap> {
     this._tasks.delete(id);
   }
 
-  from(values: ITask[]): void {
+  from(values: Task[]): void {
     this._tasks = new Map(
-      values.map((task) => [task.task_id, task] as [string, ITask])
+      values.map((task) => [task.task_id, task] as [string, Task])
     );
   }
-  get(id: string): ITask {
+  get(id: string): Task {
     const found = this._tasks.get(id);
     if (!found) throw Error("no such task");
     return found;
