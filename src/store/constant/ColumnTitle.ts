@@ -1,6 +1,6 @@
 export const ColumnTitle: { [index: string]: string } = {
   backlog: "Backlog",
   upnext: "Up Next",
-  doing: "Doing",
+  doing: "In Progress",
   done: "Done",
 };
