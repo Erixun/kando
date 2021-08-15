@@ -13,21 +13,20 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$kando-beige: beige;
-$kando-green: #1d8a59;
 :root {
-  --kando-green: #{$kando-green};
-  --kando-taskborder: 1px solid rgba(0,0,0,0.1);
+  --kando-green: #188755;
+  --kando-beige: beige;
+  --kando-taskborder: 1px solid rgba(0, 0, 0, 0.1);
+  --kando-lightblue: #cdf3ff;
+  --kando-orange: #fff17e;
+  --kando-defaultborder: 1px solid #80808057;
+  --kando-boxshadow05: 0 1px 2px rgba(0, 0, 0, 0.05),
+    0 1px 4px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.05);
+  --kando-boxshadow10: 0 1px 2px rgba(0, 0, 0, 0.1),
+    0 1px 4px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.1);
+  --kando-boxshadow15: 0 1px 2px rgba(0, 0, 0, 0.15),
+    0 1px 4px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.15);
 }
-$kando-lightblue: #cdf3ff;
-$kando-orange: #fff17e;
-$kando-defaultborder: 1px solid #80808057;
-$kando-boxshadow05: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.05),
-  0 2px 8px rgba(0, 0, 0, 0.05);
-$kando-boxshadow10: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1),
-  0 2px 8px rgba(0, 0, 0, 0.1);
-$kando-boxshadow15: 0 1px 2px rgba(0, 0, 0, 0.15), 0 1px 4px rgba(0, 0, 0, 0.15),
-  0 2px 8px rgba(0, 0, 0, 0.15);
 
 body,
 html {
@@ -56,8 +55,8 @@ html {
 }
 
 #main-header {
-  border-bottom: $kando-defaultborder;
-  box-shadow: $kando-boxshadow05;
+  border-bottom: var(--kando-defaultborder);
+  box-shadow: var(--kando-boxshadow05);
 
   #nav {
     a {
@@ -71,12 +70,12 @@ html {
   }
 }
 #drawer {
-  border-right: $kando-defaultborder;
-  box-shadow: $kando-boxshadow10;
+  border-right: var(--kando-defaultborder);
+  box-shadow: var(--kando-boxshadow10);
 }
 
 .task {
-  box-shadow: $kando-boxshadow10;
+  box-shadow: var(--kando-boxshadow10);
   border: var(--kando-taskborder);
 
   input[type="text"],
@@ -85,18 +84,18 @@ html {
   }
 }
 .task:hover {
-  box-shadow: $kando-boxshadow15;
+  box-shadow: var(--kando-boxshadow15);
 }
 #backlog .task {
   background-color: #fff;
 }
 #upnext .task {
-  background-color: $kando-lightblue;
+  background-color: var(--kando-lightblue);
 }
 #doing .task {
-  background-color: $kando-orange;
+  background-color: var(--kando-orange);
 }
 #done .task {
-  background-color: $kando-beige;
+  background-color: var(--kando-beige);
 }
 </style>
