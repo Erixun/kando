@@ -107,12 +107,12 @@ export default defineComponent({
         newInput.focus();
       }
       //get the order (id's) of tasks in this column
-      const nodes = Array.prototype.slice
+      const orderedIds = Array.prototype.slice
         .call(document.getElementById(props.id)?.children)
         .map((el) => el.id)
         .filter((id) => !["", "new"].includes(id)); //filter out the placeholder & empty task
 
-      taskManager.updateOrder(props.id as ColString, nodes);
+      taskManager.updateOrder(props.id as ColString, orderedIds);
     });
 
     const addNewCard = (columnId: string) => {
