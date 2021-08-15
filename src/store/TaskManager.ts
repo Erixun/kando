@@ -16,7 +16,7 @@ export default class TaskManager {
   nextId(): string {
     this.lastId += 1;
     return String(this.lastId);
-  };
+  }
 
   setup(): void {
     this.clearStore().fetchTasks();
@@ -60,14 +60,11 @@ export default class TaskManager {
   distributeTasks(): void {
     const allTasks = TaskStore[All];
     const keys = Object.keys(this.orderStore) as ColKey[];
-    
+
     keys.forEach((columnKey) => {
-      const ordered = this.orderStore[columnKey].map((id) =>
-        allTasks.get(id)
-      );
+      const ordered = this.orderStore[columnKey].map((id) => allTasks.get(id));
       TaskStore[columnKey].from(ordered);
     });
-
   }
 
   /**

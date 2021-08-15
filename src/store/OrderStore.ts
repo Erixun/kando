@@ -1,9 +1,7 @@
 import { singleton } from "tsyringe";
 import { ColKey } from "./constant";
 @singleton()
-export default class OrderStore
-  implements Record<ColKey, string[]>
-{
+export default class OrderStore implements Record<ColKey, string[]> {
   [ColKey.Backlog]: string[];
   [ColKey.UpNext]: string[];
   [ColKey.Doing]: string[];

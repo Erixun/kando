@@ -4,7 +4,6 @@ import Task from "./Task";
 
 @injectable()
 export default class Column implements TaskRepository<Task[]>, Typed {
-
   constructor(public _tasks: Task[] = []) {}
 
   get tasks(): Task[] {
