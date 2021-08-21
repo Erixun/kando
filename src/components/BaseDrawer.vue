@@ -1,0 +1,48 @@
+<template>
+  <div :id="drawerId" @dragenter="onDragEnter()" class="drawer">
+    <slot></slot>
+    <button :id="drawerBtnId" class="drawer-btn" @click="toggleClosed()">
+      <span>|-></span>
+    </button>
+  </div>
+</template>
+
+<script lang="ts">
+import { computed, defineComponent } from "vue";
+
+export default defineComponent({
+  name: "BaseDrawer",
+  props: {
+    id: {
+      type: String,
+      required: true,
+    },
+  },
+  methods: {
+    toggleClosed() {
+      const drawer = document.getElementById(this.drawerId);
+      drawer
+        ? drawer.classList.toggle("closed")
+        : () => {
+            throw Error("element with id drawer not found");
+          };
+      setTimeout(() => {
+        drawer?.firstElementChild?.classList.toggle("hide");
+      }, 200);
+    },
+    onDragEnter() {
+      const drawer = document.getElementById(this.drawerId);
+
+      if (drawer?.classList?.contains("closed")) {
+        this.toggleClosed();
+      }
+    },
+  },
+  setup(props) {
+    return {
+      drawerId: computed(() => `drawer-${props.id}`),
+      drawerBtnId: computed(() => `drawer-${props.id}-btn`),
+    };
+  },
+});
+</script>
