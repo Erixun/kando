@@ -21,13 +21,13 @@ export default defineComponent({
 <style lang="scss" scoped>
 header {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: repeat(2, max-content);
   grid-gap: 10vw;
   padding: 5px;
+  justify-content: space-evenly;
 
   h1 {
     font-style: italic;
-    padding-left: 50px;
     margin: 0;
   }
   #nav {
