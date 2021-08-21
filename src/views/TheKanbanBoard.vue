@@ -81,17 +81,20 @@ main {
     font-weight: bold;
     letter-spacing: -2px;
     top: $kando-space-above;
-    margin-top: 2px;
-    right: 5px;
+    right: 6px;
     transition: 100ms;
     border: none;
-    padding: 4px 9px;
+    padding: 5px;
     border-radius: 5px;
-    transform: rotateY(180deg);
     background: inherit;
+    font-size: 1rem;
   }
   .drawer-btn:hover {
     background-color: #e8e8e8;
+  }
+  .drawer-btn > svg {
+    transform: rotateZ(45deg);
+    margin: 0 3px;
   }
 
   .column {
@@ -104,13 +107,6 @@ main {
   min-width: 35px;
   width: 35px;
   transition: 500ms;
-
-  .drawer-btn {
-    transform: unset;
-  }
-}
-.drawer.closed > .drawer-btn {
-  transform: unset;
 }
 .drawer.closed:not(:hover) > .column.hide {
   display: none;
@@ -162,5 +158,8 @@ main {
 .drawer .placeholder {
   background-color: darkgray;
   border-color: $kando-grey;
+}
+.hide {
+  display: none;
 }
 </style>

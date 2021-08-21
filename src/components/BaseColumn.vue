@@ -295,9 +295,7 @@ header:hover .add-btn {
       }
     }
   }
-  .hide {
-    display: none;
-  }
+  
   .task-list li {
     transition-duration: 100ms;
     padding: 4px 0;

@@ -2,7 +2,8 @@
   <div :id="drawerId" @dragenter="onDragEnter()" class="drawer">
     <slot></slot>
     <button :id="drawerBtnId" class="drawer-btn" @click="toggleClosed()">
-      <span>|-></span>
+      <fa-icon :id="compressId" icon="compress-alt"></fa-icon>
+      <fa-icon :id="expandId" icon="expand-alt" class="hide"></fa-icon>
     </button>
   </div>
 </template>
@@ -28,6 +29,8 @@ export default defineComponent({
           };
       setTimeout(() => {
         drawer?.firstElementChild?.classList.toggle("hide");
+        document.getElementById(this.compressId)?.classList.toggle("hide");
+        document.getElementById(this.expandId)?.classList.toggle("hide");
       }, 200);
     },
     onDragEnter() {
@@ -42,6 +45,8 @@ export default defineComponent({
     return {
       drawerId: computed(() => `drawer-${props.id}`),
       drawerBtnId: computed(() => `drawer-${props.id}-btn`),
+      compressId: computed(() => `${props.id}-compress`),
+      expandId: computed(() => `${props.id}-expand`),
     };
   },
 });
