@@ -1,49 +1,33 @@
 <template>
   <main>
-    <div id="drawer" @dragenter="onDragEnter()">
+    <base-drawer id="left">
       <base-column :id="backlog" />
-      <button id="drawer-btn" @click="toggleClosed()"><span>|-></span></button>
-    </div>
+    </base-drawer>
+
     <section id="main-columns">
       <base-column :id="upnext" />
       <base-column :id="doing" />
-      <base-column :id="done" />
     </section>
+
+    <base-drawer id="right">
+      <base-column :id="done" />
+    </base-drawer>
   </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import BaseColumn from "@/components/BaseColumn.vue";
+import BaseDrawer from "@/components/BaseDrawer.vue";
 import { container } from "tsyringe";
 import TaskManager from "@/store/TaskManager";
 import { ColKey } from "@/store/constant/ColKey";
 
 export default defineComponent({
   name: "TheKanbanBoard",
-  components: { BaseColumn },
+  components: { BaseColumn, BaseDrawer },
   async created() {
     container.resolve(TaskManager).setup();
-  },
-  methods: {
-    toggleClosed() {
-      const drawer = document.getElementById("drawer");
-      drawer
-        ? drawer.classList.toggle("closed")
-        : () => {
-            throw Error("element with id drawer not found");
-          };
-      setTimeout(() => {
-        drawer?.firstElementChild?.classList.toggle("hide");
-      }, 200);
-    },
-    onDragEnter() {
-      const drawer = document.getElementById("drawer");
-
-      if (drawer?.classList?.contains("closed")) {
-        this.toggleClosed();
-      }
-    },
   },
   setup() {
     return {
@@ -73,8 +57,8 @@ main {
     gap: 5px;
   }
 
-  #drawer,
-  #drawer.closed:hover {
+  .drawer,
+  .drawer.closed:hover {
     background-color: $kando-grey;
     padding: $kando-space-above 5px 0 5px;
     position: relative;
@@ -88,7 +72,7 @@ main {
       margin-top: unset;
     }
   }
-  #drawer-btn {
+  .drawer-btn {
     cursor: pointer;
     position: absolute;
     font-weight: bold;
@@ -103,7 +87,7 @@ main {
     transform: rotateY(180deg);
     background: inherit;
   }
-  #drawer-btn:hover {
+  .drawer-btn:hover {
     background-color: #e8e8e8;
   }
 
@@ -114,29 +98,29 @@ main {
   }
 }
 
-#drawer.closed:not(:hover) {
+.drawer.closed:not(:hover) {
   min-width: 35px;
   width: 35px;
   transition: 500ms;
 
-  #drawer-btn {
+  .drawer-btn {
     transform: unset;
   }
 }
-#drawer.closed > #drawer-btn {
+.drawer.closed > .drawer-btn {
   transform: unset;
 }
-#drawer.closed:not(:hover) > .column.hide {
+.drawer.closed:not(:hover) > .column.hide {
   display: none;
 }
 
-#drawer > .column {
+.drawer > .column {
   min-width: 100%;
   width: 22vw;
   max-width: 100%;
   max-height: 100%;
 }
-#drawer > .column > header {
+.drawer > .column > header {
   background-color: $kando-grey;
 }
 
@@ -153,7 +137,7 @@ main {
   }
 }
 
-#drawer header {
+.drawer header {
   box-shadow: $kando-boxshadow-fade $kando-grey;
 }
 
@@ -166,7 +150,7 @@ main {
   border-color: white;
   transition-duration: 100ms;
 }
-#drawer .placeholder {
+.drawer .placeholder {
   background-color: darkgray;
   border-color: $kando-grey;
 }
