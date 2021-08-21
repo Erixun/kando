@@ -51,15 +51,18 @@ main {
   max-width: 1400px;
   overflow: hidden;
   flex: min-content;
+  align-self: center;
+  justify-content: center;
+  width: 100vw;
 
   header {
     display: flex;
     gap: 5px;
   }
-
   .drawer,
   .drawer.closed:hover {
     background-color: $kando-grey;
+    border: 1px solid #80808040;
     padding: $kando-space-above 5px 0 5px;
     position: relative;
     transition: 1000ms;
@@ -93,8 +96,7 @@ main {
 
   .column {
     min-width: 220px;
-    width: 22vw;
-    max-width: 300px;
+    width: 40%;
   }
 }
 
@@ -125,11 +127,18 @@ main {
 }
 
 #main-columns {
-  padding: $kando-space-above 50px 0 15px;
+  padding: $kando-space-above 30px 0;
   display: flex;
-  gap: 1.5vw;
+  column-gap: 8%;
   overflow: auto;
-  margin: 0 auto;
+  width: 800px;
+
+  .column:first-child {
+    margin-left: auto;
+  }
+  .column:last-child {
+    margin-right: auto;
+  }
 
   header {
     background-color: #fff;
