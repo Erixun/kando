@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
 import BaseColumn from "@/components/BaseColumn.vue";
 import BaseDrawer from "@/components/BaseDrawer.vue";
 import { container } from "tsyringe";
@@ -30,6 +30,22 @@ export default defineComponent({
     container.resolve(TaskManager).setup();
   },
   setup() {
+    onMounted(() => {
+      const closeDrawers = () => {
+        if (window.innerWidth < 580) {
+          const drawers = document.getElementsByClassName("drawer");
+
+          Array.from(drawers).forEach((d) => {
+            if (!d.classList.contains("closed")) {
+              d.classList.toggle("closed");
+            }
+          });
+        }
+      };
+      window.onresize = closeDrawers;
+      window.onload = closeDrawers;
+    });
+
     return {
       backlog: ColKey.Backlog,
       upnext: ColKey.UpNext,
@@ -59,7 +75,7 @@ main {
     display: flex;
     gap: 5px;
   }
-  .drawer,
+  .drawer:not(.hidden),
   .drawer.closed:hover {
     background-color: $kando-grey;
     border: 1px solid #80808040;
@@ -108,8 +124,28 @@ main {
   width: 35px;
   transition: 500ms;
 }
-.drawer.closed:not(:hover) > .column.hide {
-  display: none;
+
+.drawer.closed {
+  .fa-compress-alt {
+    display: none;
+  }
+  .fa-expand-alt {
+    display: unset;
+  }
+}
+.drawer:not(.closed) {
+  .fa-compress-alt {
+    display: unset;
+  }
+  .fa-expand-alt {
+    display: none;
+  }
+}
+.drawer.closed:not(:hover) > .column {
+  // display: none;
+  input[type="text"] {
+    color:transparent;
+  }
 }
 
 .drawer > .column {
@@ -159,7 +195,28 @@ main {
   background-color: darkgray;
   border-color: $kando-grey;
 }
-.hide {
+.hidden {
   display: none;
+  width: 0;
+  transition-duration: 200ms;
+}
+
+@media (max-width: 580px) and (orientation: portrait) {
+  #main-columns {
+    display: grid;
+    grid-auto-rows: max-content;
+
+    .column:first-child {
+      order: 1;
+    }
+    .column:first-child,
+    .column:last-child {
+      margin: 0 auto;
+
+      .tasks {
+        padding-bottom: 5vh;
+      }
+    }
+  }
 }
 </style>
