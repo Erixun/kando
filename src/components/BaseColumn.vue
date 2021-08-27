@@ -1,9 +1,9 @@
 <template>
   <article class="column">
     <header @click="addNewCard(columnId)">
-      <h4>
+      <h3>
         {{ headerText }}
-      </h4>
+      </h3>
       <div class="btn-wrapper">
         <button class="add-btn">+</button>
       </div>
@@ -242,7 +242,7 @@ header {
   position: sticky;
   top: 0;
 }
-header > h4 {
+header > h3 {
   text-align: left;
   font-weight: bold;
   margin: 0;
@@ -295,7 +295,7 @@ header:hover .add-btn {
       }
     }
   }
-  
+
   .task-list li {
     transition-duration: 100ms;
     padding: 4px 0;

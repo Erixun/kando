@@ -41,7 +41,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$kando-space-above: 5vh;
+$kando-space-above: var(--kando-space-above); //5vh;
 $kando-grey: #d8d8d8;
 $kando-lightgrey: #f7f7f7;
 $kando-boxshadow-fade: 0px 0px 7px 8px;
@@ -81,13 +81,13 @@ main {
     font-weight: bold;
     letter-spacing: -2px;
     top: $kando-space-above;
-    right: 6px;
+    right: 5px;
     transition: 100ms;
     border: none;
     padding: 5px;
     border-radius: 5px;
     background: inherit;
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
   .drawer-btn:hover {
     background-color: #e8e8e8;
