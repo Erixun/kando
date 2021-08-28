@@ -31,17 +31,21 @@ export default defineComponent({
         drawer?.firstElementChild?.classList.toggle("hidden");
       }, 200);
 
-    if(window.innerWidth < 580) { //hide other drawer when one is open
-      const drawers = document.getElementsByClassName("drawer")
-      if(!drawer?.classList.contains("closed")) {
-        const closed = Array.from(drawers).find(d => d.classList.contains("closed"))
-        closed?.classList.add("hidden");
-      } else {
-        const hidden = Array.from(drawers).find(d => d.classList.contains("hidden"))
-        hidden?.classList.remove("hidden")
+      if (window.innerWidth < 580) {
+        //hide other drawer when one is open
+        const drawers = document.getElementsByClassName("drawer");
+        if (!drawer?.classList.contains("closed")) {
+          const closed = Array.from(drawers).find((d) =>
+            d.classList.contains("closed")
+          );
+          closed?.classList.add("hidden");
+        } else {
+          const hidden = Array.from(drawers).find((d) =>
+            d.classList.contains("hidden")
+          );
+          hidden?.classList.remove("hidden");
+        }
       }
-    }
-
     },
     onDragEnter() {
       const drawer = document.getElementById(this.drawerId);
