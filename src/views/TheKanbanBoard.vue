@@ -1,6 +1,7 @@
 <template>
   <main>
     <base-drawer id="left">
+      <fa-icon icon="inbox" />
       <base-column :id="backlog" />
     </base-drawer>
 
@@ -10,6 +11,7 @@
     </section>
 
     <base-drawer id="right">
+      <fa-icon icon="check-square" />
       <base-column :id="done" />
     </base-drawer>
   </main>
@@ -57,7 +59,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$kando-space-above: var(--kando-space-above); //5vh;
+$kando-space-above: var(--kando-space-above);
 $kando-grey: #d8d8d8;
 $kando-lightgrey: #f7f7f7;
 $kando-boxshadow-fade: 0px 0px 7px 8px;
