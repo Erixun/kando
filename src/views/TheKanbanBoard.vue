@@ -123,6 +123,11 @@ main {
   min-width: 35px;
   width: 35px;
   transition: 500ms;
+
+  header {
+    opacity: 0;
+    transition: opacity 300ms linear;
+  }
 }
 
 .drawer.closed {
@@ -144,6 +149,7 @@ main {
 .drawer.closed:not(:hover) > .column {
   // display: none;
   overflow: hidden;
+
   input[type="text"] {
     color: transparent;
   }
@@ -157,6 +163,8 @@ main {
 }
 .drawer > .column > header {
   background-color: $kando-grey;
+  opacity: 1;
+  transition: opacity 300ms linear;
 }
 
 #main-columns {
