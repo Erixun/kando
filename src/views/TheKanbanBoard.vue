@@ -239,7 +239,7 @@ main {
   #main-columns {
     display: grid;
     grid-auto-rows: max-content;
-    padding: $kando-space-above 0 0;
+    padding: $kando-space-above 5px 0;
 
     .column:first-child {
       order: 1;
