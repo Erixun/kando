@@ -282,7 +282,7 @@ header:hover .add-btn {
       text-align: left;
       min-height: 1rem;
       padding: 5px;
-      border-radius: 2px;
+      border-radius: 4px;
 
       input {
         cursor: pointer;
