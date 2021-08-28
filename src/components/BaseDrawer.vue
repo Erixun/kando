@@ -27,9 +27,9 @@ export default defineComponent({
         : () => {
             throw Error("element with id drawer not found");
           };
-      setTimeout(() => {
-        drawer?.firstElementChild?.classList.toggle("hidden");
-      }, 200);
+      // setTimeout(() => {
+      //   drawer?.firstElementChild?.classList.toggle("hidden");
+      // }, 200);
 
       if (window.innerWidth < 580) {
         //hide other drawer when one is open
