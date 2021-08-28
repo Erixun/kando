@@ -264,7 +264,7 @@ header:hover .add-btn {
   font-size: 1.5rem;
   font-weight: bold;
   transition-duration: 200ms;
-  line-height: 23px;
+  line-height: 26px;
 }
 
 .tasks {
