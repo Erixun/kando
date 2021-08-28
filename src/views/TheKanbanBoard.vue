@@ -143,8 +143,9 @@ main {
 }
 .drawer.closed:not(:hover) > .column {
   // display: none;
+  overflow: hidden;
   input[type="text"] {
-    color:transparent;
+    color: transparent;
   }
 }
 
