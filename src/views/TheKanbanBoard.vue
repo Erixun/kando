@@ -11,7 +11,7 @@
     </section>
 
     <base-drawer id="right">
-      <fa-icon icon="check-square" />
+      <fa-icon icon="check" />
       <base-column :id="done" />
     </base-drawer>
   </main>
@@ -81,18 +81,34 @@ main {
   .drawer.closed:hover {
     background-color: $kando-grey;
     border: 1px solid #80808040;
-    padding: $kando-space-above 5px 0 5px;
+    padding: 0 5px;//$kando-space-above 5px 0 5px;
     position: relative;
     transition: 1000ms;
     width: 20%;
     min-width: 160px;
     display: flex;
+    flex-direction: column;
     overflow: auto;
+
+    .fa-inbox, .fa-check {
+      height: 11vh;
+      align-self: center;
+      padding-top: 4vh;
+    }
 
     .column {
       margin-top: unset;
     }
   }
+  .btn-wrapper {
+    display: flex;
+    align-items: first baseline;
+  }
+
+  .add-btn {
+    line-height: 26px;
+  }
+
   .drawer-btn {
     cursor: pointer;
     position: absolute;
@@ -149,7 +165,6 @@ main {
   }
 }
 .drawer.closed:not(:hover) > .column {
-  // display: none;
   overflow: hidden;
 
   input[type="text"] {
@@ -217,9 +232,14 @@ main {
     min-width: 40vw;
   }
   
+  .drawer.closed:not(:hover) > .column {
+    display: none;
+  }
+  
   #main-columns {
     display: grid;
     grid-auto-rows: max-content;
+    padding: $kando-space-above 0 0;
 
     .column:first-child {
       order: 1;
