@@ -19,6 +19,7 @@ export default defineComponent({
   --kando-taskborder: 1px solid rgba(0, 0, 0, 0.1);
   --kando-lightblue: #cdf3ff;
   --kando-orange: #fff17e;
+  --kando-space-above: 15vh;
   --kando-defaultborder: 1px solid #80808057;
   --kando-boxshadow05: 0 1px 2px rgba(0, 0, 0, 0.05),
     0 1px 4px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.05);
