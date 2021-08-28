@@ -211,6 +211,10 @@ main {
 }
 
 @media (max-width: 580px) and (orientation: portrait) {
+  main .drawer:not(.hidden) {
+    min-width: 40vw;
+  }
+  
   #main-columns {
     display: grid;
     grid-auto-rows: max-content;
