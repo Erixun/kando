@@ -254,17 +254,21 @@ header > h3 {
 header:hover .add-btn {
   opacity: unset;
 }
-
-.add-btn {
-  cursor: pointer;
-  opacity: 0;
-  border: none;
-  background: transparent;
-  color: var(--kando-green);
-  font-size: 1.5rem;
-  font-weight: bold;
-  transition-duration: 200ms;
-  line-height: 26px;
+.btn-wrapper {
+  display: flex;
+  align-items: first baseline;
+  
+  .add-btn {
+    cursor: pointer;
+    opacity: 0;
+    border: none;
+    background: transparent;
+    color: var(--kando-green);
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition-duration: 200ms;
+    line-height: 26px;
+  }
 }
 
 .tasks {

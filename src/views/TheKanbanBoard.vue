@@ -77,11 +77,20 @@ main {
     display: flex;
     gap: 5px;
   }
+  .placeholder {
+    border-radius: 2px;
+    opacity: 0.5;
+    border-width: 2px 0;
+    border-style: solid;
+    transition-duration: 100ms;
+  }
+
+  // drawer styling
   .drawer:not(.hidden),
   .drawer.closed:hover {
     background-color: $kando-grey;
     border: 1px solid #80808040;
-    padding: 0 5px;//$kando-space-above 5px 0 5px;
+    padding: 0 5px;
     position: relative;
     transition: 1000ms;
     width: 20%;
@@ -90,7 +99,8 @@ main {
     flex-direction: column;
     overflow: auto;
 
-    .fa-inbox, .fa-check {
+    .fa-inbox,
+    .fa-check {
       height: 11vh;
       align-self: center;
       padding-top: 4vh;
@@ -99,14 +109,6 @@ main {
     .column {
       margin-top: unset;
     }
-  }
-  .btn-wrapper {
-    display: flex;
-    align-items: first baseline;
-  }
-
-  .add-btn {
-    line-height: 26px;
   }
 
   .drawer-btn {
@@ -182,8 +184,14 @@ main {
   background-color: $kando-grey;
   opacity: 1;
   transition: opacity 300ms linear;
+  box-shadow: $kando-boxshadow-fade $kando-grey;
+}
+.drawer .placeholder {
+  background-color: darkgray;
+  border-color: $kando-grey;
 }
 
+// main columns styling
 #main-columns {
   padding: $kando-space-above 30px 0;
   display: flex;
@@ -191,36 +199,22 @@ main {
   overflow: auto;
   width: 800px;
 
+  header {
+    background-color: #fff;
+    box-shadow: $kando-boxshadow-fade white;
+  }
   .column:first-child {
     margin-left: auto;
   }
   .column:last-child {
     margin-right: auto;
   }
-
-  header {
-    background-color: #fff;
-    box-shadow: $kando-boxshadow-fade white;
+  .column .placeholder {
+    background-color: #d3d3d3cc;
+    border-color: white;
   }
 }
 
-.drawer header {
-  box-shadow: $kando-boxshadow-fade $kando-grey;
-}
-
-.placeholder {
-  border-radius: 2px;
-  background-color: #d3d3d3cc;
-  opacity: 0.5;
-  border-width: 2px 0;
-  border-style: solid;
-  border-color: white;
-  transition-duration: 100ms;
-}
-.drawer .placeholder {
-  background-color: darkgray;
-  border-color: $kando-grey;
-}
 .hidden {
   display: none;
   width: 0;
@@ -228,14 +222,20 @@ main {
 }
 
 @media (max-width: 580px) and (orientation: portrait) {
-  main .drawer:not(.hidden) {
+  .drawer:not(.hidden) {
     min-width: 40vw;
+
+    .column {
+      opacity: 1;
+      transition: opacity 200ms linear;
+    }
   }
-  
+
   .drawer.closed:not(:hover) > .column {
-    display: none;
+    opacity: 0;
+    transition-duration: 200ms;
   }
-  
+
   #main-columns {
     display: grid;
     grid-auto-rows: max-content;
