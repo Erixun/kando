@@ -257,7 +257,7 @@ header:hover .add-btn {
 .btn-wrapper {
   display: flex;
   align-items: first baseline;
-  
+
   .add-btn {
     cursor: pointer;
     opacity: 0;

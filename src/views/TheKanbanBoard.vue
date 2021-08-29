@@ -64,6 +64,7 @@ $kando-grey: #d8d8d8;
 $kando-lightgrey: #f7f7f7;
 $kando-boxshadow-fade: 0px 0px 7px 8px;
 
+// general styling
 main {
   display: flex;
   max-width: 1400px;
@@ -77,12 +78,19 @@ main {
     display: flex;
     gap: 5px;
   }
+
   .placeholder {
     border-radius: 2px;
     opacity: 0.5;
     border-width: 2px 0;
     border-style: solid;
     transition-duration: 100ms;
+  }
+
+  .hidden {
+    display: none;
+    width: 0;
+    transition-duration: 200ms;
   }
 
   // drawer styling
@@ -213,12 +221,6 @@ main {
     background-color: #d3d3d3cc;
     border-color: white;
   }
-}
-
-.hidden {
-  display: none;
-  width: 0;
-  transition-duration: 200ms;
 }
 
 @media (max-width: 580px) and (orientation: portrait) {
