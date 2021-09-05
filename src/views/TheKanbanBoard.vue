@@ -122,6 +122,7 @@ main {
 
     .column {
       margin-top: unset;
+      flex-grow: 1;
     }
   }
 
