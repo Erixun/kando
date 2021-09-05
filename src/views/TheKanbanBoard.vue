@@ -102,13 +102,14 @@ main {
   // drawer styling
   .drawer {
     box-shadow: var(--kando-boxshadow10);
+    background-color: $kando-grey;
+    padding: 0 5px;
+    border: var(--kando-defaultborder);
+    border-top: 0;
   }
 
   .drawer:not(.hidden),
   .drawer.closed:hover {
-    background-color: $kando-grey;
-    // border: 1px solid #80808040;
-    padding: 0 5px;
     position: relative;
     transition: 1000ms;
     width: 20%;
