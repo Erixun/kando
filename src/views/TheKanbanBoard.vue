@@ -258,6 +258,10 @@ main {
     grid-auto-rows: max-content;
     padding: $kando-space-above 5px 0;
 
+    .column {
+      min-width: unset;
+      width: 90%;
+    }
     .column:first-child {
       order: 1;
     }
