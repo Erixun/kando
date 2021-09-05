@@ -213,6 +213,7 @@ main {
   column-gap: 8%;
   overflow: auto;
   width: 800px;
+  background-color: white;
 
   header {
     background-color: #fff;

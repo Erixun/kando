@@ -50,6 +50,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #c4c4c4;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -58,6 +59,7 @@ html {
 #main-header {
   border-bottom: var(--kando-defaultborder);
   box-shadow: var(--kando-boxshadow05);
+  background-color: white;
 
   #nav {
     a {
