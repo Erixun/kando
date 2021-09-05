@@ -60,6 +60,7 @@ html {
   border-bottom: var(--kando-defaultborder);
   box-shadow: var(--kando-boxshadow05);
   background-color: white;
+  z-index: 1123;
 
   #nav {
     a {

@@ -100,10 +100,14 @@ main {
   }
 
   // drawer styling
+  .drawer {
+    box-shadow: var(--kando-boxshadow10);
+  }
+
   .drawer:not(.hidden),
   .drawer.closed:hover {
     background-color: $kando-grey;
-    border: 1px solid #80808040;
+    // border: 1px solid #80808040;
     padding: 0 5px;
     position: relative;
     transition: 1000ms;
@@ -214,6 +218,8 @@ main {
   overflow: auto;
   width: 800px;
   background-color: white;
+  box-shadow: var(--kando-boxshadow10);
+  z-index: 2617;
 
   header {
     background-color: #fff;
