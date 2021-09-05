@@ -33,19 +33,25 @@ export default defineComponent({
   },
   setup() {
     onMounted(() => {
-      const closeDrawers = () => {
+      const handleDrawers = () => {
+        const drawers = document.getElementsByClassName("drawer");
         if (window.innerWidth < 580) {
-          const drawers = document.getElementsByClassName("drawer");
-
+          // close drawers
           Array.from(drawers).forEach((d) => {
             if (!d.classList.contains("closed")) {
               d.classList.toggle("closed");
             }
           });
+        } else {
+          //no hidden drawers
+          const hidden = Array.from(drawers).find((d) =>
+            d.classList.contains("hidden")
+          );
+          hidden?.classList.remove("hidden");
         }
       };
-      window.onresize = closeDrawers;
-      window.onload = closeDrawers;
+      window.onresize = handleDrawers;
+      window.onload = handleDrawers;
     });
 
     return {
