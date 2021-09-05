@@ -223,7 +223,7 @@ main {
   }
 }
 
-@media (max-width: 580px) and (orientation: portrait) {
+@media (max-width: 580px) {
   .drawer:not(.hidden) {
     min-width: 40vw;
 
