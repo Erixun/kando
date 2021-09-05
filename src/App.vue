@@ -84,6 +84,7 @@ html {
 
   input[type="text"],
   textarea {
+    font-family: "Inter";
     background: inherit;
   }
 }

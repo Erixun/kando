@@ -292,7 +292,7 @@ header:hover .add-btn {
         cursor: pointer;
         border: none;
         font-size: 0.9rem;
-        width: 100%;
+        width: 90%;
       }
       input:focus {
         outline: none;
