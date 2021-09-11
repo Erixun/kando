@@ -50,8 +50,8 @@ export default defineComponent({
           hidden?.classList.remove("hidden");
         }
       };
+      handleDrawers();
       window.onresize = handleDrawers;
-      window.onload = handleDrawers;
     });
 
     return {
@@ -82,7 +82,6 @@ main {
 
   header {
     display: flex;
-    gap: 5px;
   }
 
   .placeholder {
@@ -254,24 +253,21 @@ main {
   }
 
   #main-columns {
-    display: grid;
-    grid-auto-rows: max-content;
+    display: flex;
+    flex-direction: column;
     padding: $kando-space-above 5px 0;
 
     .column {
       min-width: unset;
       width: 90%;
-    }
-    .column:first-child {
-      order: 1;
-    }
-    .column:first-child,
-    .column:last-child {
       margin: 0 auto;
-
+      
       .tasks {
         padding-bottom: 5vh;
       }
+    }
+    .column:first-child {
+      order: 1;
     }
   }
 }
