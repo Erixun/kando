@@ -18,6 +18,7 @@ export default defineComponent({
   --kando-beige: beige;
   --kando-taskborder: 1px solid rgba(0, 0, 0, 0.1);
   --kando-lightblue: #cdf3ff;
+  --kando-lightgrey: #e8e8e8;
   --kando-orange: #fff17e;
   --kando-space-above: 15vh;
   --kando-defaultborder: 1px solid #80808057;
@@ -33,6 +34,7 @@ body,
 html {
   margin: 0;
   height: 100vh;
+  width: 100vw;
   display: flex;
 }
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -55,6 +57,7 @@ html {
   background-color: #c4c4c4;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 #main-header {
