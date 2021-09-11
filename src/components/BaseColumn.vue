@@ -251,8 +251,9 @@ header > h3 {
   overflow: hidden;
 }
 
-header:hover .add-btn {
-  opacity: unset;
+header:hover .btn-wrapper {
+  background: var(--kando-lightgrey);
+  border-radius: 5px;
 }
 .btn-wrapper {
   display: flex;
@@ -260,7 +261,6 @@ header:hover .add-btn {
 
   .add-btn {
     cursor: pointer;
-    opacity: 0;
     border: none;
     background: transparent;
     color: var(--kando-green);
