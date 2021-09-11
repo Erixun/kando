@@ -2,46 +2,64 @@
   {
     "task_id": "1",
     "name": "Walk dog",
-    "column": "backlog"
+    "column": "backlog",
+    "at": "",
+    "til": ""
   },
   {
     "task_id": "2",
     "name": "Have breakfast",
-    "column": "backlog"
+    "column": "backlog",
+    "at": "",
+    "til": ""
   },
   {
     "task_id": "3",
     "name": "Read book",
-    "column": "backlog"
+    "column": "backlog",
+    "at": "",
+    "til": ""
   },
   {
     "task_id": "4",
     "name": "Do laundry",
-    "column": "upnext"
+    "column": "upnext",
+    "at": "09:30",
+    "til": "10:00"
   },
   {
     "task_id": "5",
     "name": "Take shower",
-    "column": "upnext"
+    "column": "upnext",
+    "at": "10:25",
+    "til": ""
   },
   {
     "task_id": "6",
     "name": "Brush teeth",
-    "column": "doing"
+    "column": "doing",
+    "at": "",
+    "til": ""
   },
   {
     "task_id": "7",
     "name": "Play videogames",
-    "column": "doing"
+    "column": "doing",
+    "at": "12:15",
+    "til": ""
   },
   {
     "task_id": "8",
     "name": "Drink coffee",
-    "column": "done"
+    "column": "done",
+    "at": "",
+    "til": ""
   },
   {
     "task_id": "9",
     "name": "Order pizza",
-    "column": "done"
+    "column": "done",
+    "at": "",
+    "til": ""
   }
 ]
