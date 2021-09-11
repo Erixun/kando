@@ -32,6 +32,8 @@ export default defineComponent({
 body,
 html {
   margin: 0;
+  height: 100vh;
+  display: flex;
 }
 /* Hide scrollbar for Chrome, Safari and Opera */
 *::-webkit-scrollbar {
@@ -51,7 +53,6 @@ html {
   text-align: center;
   color: #2c3e50;
   background-color: #c4c4c4;
-  height: 100vh;
   display: flex;
   flex-direction: column;
 }
