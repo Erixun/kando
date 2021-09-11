@@ -3,11 +3,11 @@ import Home from "../views/Home.vue";
 import TheKanbanBoard from "@/views/TheKanbanBoard.vue";
 
 const routes: Array<RouteRecordRaw> = [
-  {
-    path: "/",
-    name: "Home",
-    component: Home,
-  },
+  // {
+  //   path: "/",
+  //   name: "Home",
+  //   component: Home,
+  // },
   {
     path: "/board",
     name: "TheKanbanBoard",
