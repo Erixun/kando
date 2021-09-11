@@ -33,6 +33,13 @@
               v-model="task.name"
               placeholder="New task"
             />
+            <span
+              class="time-span"
+              v-if="task.at"
+              :id="`at-input${task.task_id}`"
+            >
+              {{ task.at }}{{ task.til ? ` - ${task.til}` : "" }}
+            </span>
           </article>
         </li>
       </ul>
@@ -296,6 +303,12 @@ header:hover .btn-wrapper {
       }
       input:focus {
         outline: none;
+      }
+      .time-span {
+        font-size: 0.75rem;
+        font-family: "Inter";
+        white-space: nowrap;
+        padding: 1px 3px;
       }
     }
   }
