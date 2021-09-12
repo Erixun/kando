@@ -182,12 +182,12 @@ main {
     display: none;
   }
   .fa-expand-alt {
-    display: unset;
+    display: flex;
   }
 }
 .drawer:not(.closed) {
   .fa-compress-alt {
-    display: unset;
+    display: flex;
   }
   .fa-expand-alt {
     display: none;

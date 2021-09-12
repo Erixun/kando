@@ -5,7 +5,9 @@
         {{ headerText }}
       </h3>
       <div class="btn-wrapper">
-        <button class="add-btn">+</button>
+        <button class="add-btn">
+          <fa-icon icon="plus" class="add-icon" />
+        </button>
       </div>
     </header>
     <section
@@ -112,7 +114,7 @@ export default defineComponent({
         newInput.addEventListener("focusout", focusOutEvtListener);
         setTimeout(() => {
           newInput.focus();
-        },100)
+        }, 100);
       }
       //get the order (id's) of tasks in this column
       const orderedIds = Array.prototype.slice
@@ -260,23 +262,27 @@ header > h3 {
   overflow: hidden;
 }
 
-header:hover .btn-wrapper {
+header:hover .btn-wrapper .add-btn {
   background: var(--kando-lightgrey);
   border-radius: 5px;
 }
 .btn-wrapper {
   display: flex;
-  align-items: first baseline;
+  align-items: center;
 
   .add-btn {
     cursor: pointer;
     border: none;
     background: transparent;
     color: var(--kando-green);
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: bold;
     transition-duration: 200ms;
-    line-height: 26px;
+    padding: 5px;
+
+    .add-icon {
+      display: flex;
+    }
   }
 }
 

@@ -9,11 +9,12 @@ import {
   faCompressAlt,
   faInbox,
   faCheck,
+  faPlus
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import Vue3TouchEvents from "vue3-touch-events";
 
-library.add(faExpandAlt, faCompressAlt, faInbox, faCheck);
+library.add(faExpandAlt, faCompressAlt, faInbox, faCheck, faPlus);
 
 createApp(App)
   .use(router)
