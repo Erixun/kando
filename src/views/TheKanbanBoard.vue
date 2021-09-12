@@ -197,6 +197,7 @@ main {
 
   input[type="text"] {
     color: transparent;
+    width: 0;
   }
 }
 
