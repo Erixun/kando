@@ -261,7 +261,7 @@ main {
       min-width: unset;
       width: 90%;
       margin: 0 auto;
-      
+
       .tasks {
         padding-bottom: 5vh;
       }

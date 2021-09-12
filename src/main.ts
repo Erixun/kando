@@ -11,7 +11,12 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import Vue3TouchEvents from "vue3-touch-events";
 
 library.add(faExpandAlt, faCompressAlt, faInbox, faCheck);
 
-createApp(App).use(router).component("fa-icon", FontAwesomeIcon).mount("#app");
+createApp(App)
+  .use(router)
+  .use(Vue3TouchEvents)
+  .component("fa-icon", FontAwesomeIcon)
+  .mount("#app");

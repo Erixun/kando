@@ -1,6 +1,6 @@
 <template>
   <article class="column">
-    <header @click="addNewCard(columnId)">
+    <header v-touch:tap="addNewCard(columnId)">
       <h3>
         {{ headerText }}
       </h3>

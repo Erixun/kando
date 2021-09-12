@@ -5,7 +5,8 @@
     "column": "backlog",
     "at": "",
     "til": "",
-    "do_date": ""
+    "do_date": "",
+    "subtasks": []
   },
   {
     "task_id": "2",
@@ -13,7 +14,8 @@
     "column": "backlog",
     "at": "",
     "til": "",
-    "do_date": ""
+    "do_date": "",
+    "subtasks": []
   },
   {
     "task_id": "3",

@@ -7,7 +7,6 @@ export default class Task {
   at: string; //@TODO: make TimeString type
   til: string;
 
-
   constructor(column: ColKey) {
     this.task_id = "new";
     this.name = "";
