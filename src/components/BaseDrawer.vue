@@ -1,7 +1,7 @@
 <template>
   <div :id="drawerId" @dragenter="onDragEnter()" class="drawer">
     <slot></slot>
-    <button :id="drawerBtnId" class="drawer-btn" v-touch="toggleClosed">
+    <button :id="drawerBtnId" class="drawer-btn" v-touch:release="toggleClosed">
       <fa-icon :id="compressId" icon="compress-alt"></fa-icon>
       <fa-icon :id="expandId" icon="expand-alt"></fa-icon>
     </button>

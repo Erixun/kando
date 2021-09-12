@@ -34,17 +34,27 @@ export default defineComponent({
   setup() {
     onMounted(() => {
       const handleDrawers = () => {
-        const drawers = document.getElementsByClassName("drawer");
+        const drawerElements = document.getElementsByClassName("drawer");
         if (window.innerWidth < 580) {
-          // close drawers
-          Array.from(drawers).forEach((d) => {
-            if (!d.classList.contains("closed")) {
-              d.classList.toggle("closed");
+          Array.from(drawerElements).forEach((d) => {
+            const classList = d.classList;
+            // close drawerElements
+            if (!classList.contains("closed")) {
+              classList.toggle("closed");
+            }
+            // prevent hover effect
+            if(!classList.contains("no-hover")) {
+              classList.toggle("no-hover");
             }
           });
         } else {
-          //no hidden drawers
-          const hidden = Array.from(drawers).find((d) =>
+          const drawers = Array.from(drawerElements);
+          // allow hover effect
+          drawers.forEach( d => {
+            d.classList.remove("no-hover");
+          })
+          // unhide hidden drawerElement
+          const hidden = drawers.find((d) =>
             d.classList.contains("hidden")
           );
           hidden?.classList.remove("hidden");
@@ -108,7 +118,7 @@ main {
   }
 
   .drawer:not(.hidden),
-  .drawer.closed:hover {
+  .drawer.closed:not(.no-hover):hover {
     position: relative;
     transition: 1000ms;
     width: 20%;
@@ -144,9 +154,7 @@ main {
     background: inherit;
     font-size: 1.3rem;
   }
-  // .drawer-btn:hover {
-  //   background-color: #e8e8e8;
-  // }
+  
   .drawer-btn > svg {
     transform: rotateZ(45deg);
     margin: 0 3px;
@@ -158,7 +166,7 @@ main {
   }
 }
 
-.drawer.closed:not(:hover) {
+.drawer.closed:not(:hover), .drawer.closed.no-hover {
   min-width: 35px;
   width: 35px;
   transition: 500ms;
@@ -251,7 +259,8 @@ main {
     }
   }
 
-  .drawer.closed:not(:hover) > .column {
+  .drawer.closed:not(:hover) > .column,
+  .drawer.closed.no-hover > .column {
     opacity: 0;
     transition-duration: 200ms;
   }
