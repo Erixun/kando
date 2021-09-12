@@ -1,7 +1,7 @@
 <template>
   <div :id="drawerId" @dragenter="onDragEnter()" class="drawer">
     <slot></slot>
-    <button :id="drawerBtnId" class="drawer-btn" @click="toggleClosed()">
+    <button :id="drawerBtnId" class="drawer-btn" v-touch="toggleClosed">
       <fa-icon :id="compressId" icon="compress-alt"></fa-icon>
       <fa-icon :id="expandId" icon="expand-alt"></fa-icon>
     </button>
@@ -27,9 +27,6 @@ export default defineComponent({
         : () => {
             throw Error("element with id drawer not found");
           };
-      // setTimeout(() => {
-      //   drawer?.firstElementChild?.classList.toggle("hidden");
-      // }, 200);
 
       if (window.innerWidth < 580) {
         //hide other drawer when one is open

@@ -1,6 +1,6 @@
 <template>
   <article class="column">
-    <header v-touch:tap="addNewCard(columnId)">
+    <header v-touch="addNewCard">
       <h3>
         {{ headerText }}
       </h3>
@@ -121,8 +121,8 @@ export default defineComponent({
       taskManager.updateOrder(props.id as ColKey, orderedIds);
     });
 
-    const addNewCard = (columnId: string) => {
-      taskManager.addTask(columnId);
+    const addNewCard = () => {
+      taskManager.addTask(props.id);
     };
 
     const putPlaceHolder = (el?: HTMLElement, before = true) => {
