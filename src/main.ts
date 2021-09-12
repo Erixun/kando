@@ -9,7 +9,7 @@ import {
   faCompressAlt,
   faInbox,
   faCheck,
-  faPlus
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import Vue3TouchEvents from "vue3-touch-events";

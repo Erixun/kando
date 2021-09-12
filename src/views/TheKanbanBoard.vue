@@ -43,20 +43,18 @@ export default defineComponent({
               classList.toggle("closed");
             }
             // prevent hover effect
-            if(!classList.contains("no-hover")) {
+            if (!classList.contains("no-hover")) {
               classList.toggle("no-hover");
             }
           });
         } else {
           const drawers = Array.from(drawerElements);
           // allow hover effect
-          drawers.forEach( d => {
+          drawers.forEach((d) => {
             d.classList.remove("no-hover");
-          })
+          });
           // unhide hidden drawerElement
-          const hidden = drawers.find((d) =>
-            d.classList.contains("hidden")
-          );
+          const hidden = drawers.find((d) => d.classList.contains("hidden"));
           hidden?.classList.remove("hidden");
         }
       };
@@ -154,7 +152,7 @@ main {
     background: inherit;
     font-size: 1.3rem;
   }
-  
+
   .drawer-btn > svg {
     transform: rotateZ(45deg);
     margin: 0 3px;
@@ -166,7 +164,8 @@ main {
   }
 }
 
-.drawer.closed:not(:hover), .drawer.closed.no-hover {
+.drawer.closed:not(:hover),
+.drawer.closed.no-hover {
   min-width: 35px;
   width: 35px;
   transition: 500ms;
@@ -245,7 +244,7 @@ main {
   }
 }
 @media (hover: hover) {
-    .drawer-btn:hover {
+  .drawer-btn:hover {
     background-color: #e8e8e8;
   }
 }
