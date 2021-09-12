@@ -33,8 +33,8 @@ export default defineComponent({
 body,
 html {
   margin: 0;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   display: flex;
 }
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -76,6 +76,9 @@ html {
       }
     }
   }
+}
+main {
+  flex-grow: 1;
 }
 #drawer {
   border-right: var(--kando-defaultborder);
