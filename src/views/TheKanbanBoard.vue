@@ -144,9 +144,9 @@ main {
     background: inherit;
     font-size: 1.3rem;
   }
-  .drawer-btn:hover {
-    background-color: #e8e8e8;
-  }
+  // .drawer-btn:hover {
+  //   background-color: #e8e8e8;
+  // }
   .drawer-btn > svg {
     transform: rotateZ(45deg);
     margin: 0 3px;
@@ -236,7 +236,11 @@ main {
     border-color: white;
   }
 }
-
+@media (hover: hover) {
+    .drawer-btn:hover {
+    background-color: #e8e8e8;
+  }
+}
 @media (max-width: 580px) {
   .drawer:not(.hidden) {
     min-width: 40vw;
