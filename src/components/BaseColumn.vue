@@ -110,7 +110,9 @@ export default defineComponent({
       if (newCard) newCard.draggable = false;
       if (newInput) {
         newInput.addEventListener("focusout", focusOutEvtListener);
-        newInput.focus();
+        setTimeout(() => {
+          newInput.focus();
+        },100)
       }
       //get the order (id's) of tasks in this column
       const orderedIds = Array.prototype.slice
