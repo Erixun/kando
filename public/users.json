@@ -1,0 +1,23 @@
+[
+  {
+    "user_id": "Ug7hXij",
+    "first_name": "David",
+    "last_name": "Allen",
+    "email": "david.allen@gmail.com",
+    "password": "secret"
+  },
+  {
+    "user_id": "Ug7hXiQ",
+    "first_name": "Alan",
+    "last_name": "Aragon",
+    "email": "alan.aragon@gmail.com",
+    "password": "secret"
+  },
+  {
+    "user_id": "Ug7hXi7",
+    "first_name": "Bilbo",
+    "last_name": "Baggins",
+    "email": "bilbo.baggins@gmail.com",
+    "password": "secret"
+  }
+]

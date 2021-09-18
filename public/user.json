@@ -1,7 +1,7 @@
 {
-  "userId": "Ug7hXij",
-  "firstName": "David",
-  "lastName": "Allen",
+  "user_id": "Ug7hXij",
+  "first_name": "David",
+  "last_name": "Allen",
   "email": "david.allen@gmail.com",
   "password": "secret"
 }
