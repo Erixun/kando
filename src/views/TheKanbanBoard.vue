@@ -285,6 +285,7 @@ main {
       min-width: unset;
       width: 90%;
       margin: 0 auto;
+      box-shadow: 0px 0px 6px 6px white;
 
       .tasks {
         padding-bottom: 5vh;
@@ -293,7 +294,6 @@ main {
     .column:first-child {
       order: 1;
       flex: 1 0 50%;
-      box-shadow: 0px 0px 4px 4px white;
     }
   }
 }
