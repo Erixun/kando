@@ -114,7 +114,7 @@ export default defineComponent({
         newInput.addEventListener("focusout", focusOutEvtListener);
         setTimeout(() => {
           newInput.focus();
-        }, 100);
+        }, 200);
       }
       //get the order (id's) of tasks in this column
       const orderedIds = Array.prototype.slice
