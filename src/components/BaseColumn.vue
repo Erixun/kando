@@ -115,7 +115,7 @@ export default defineComponent({
         newInput.addEventListener("focusout", focusOutEvtListener);
         setTimeout(() => {
           newInput.focus();
-        }, 200);
+        }, 300);
       }
       //get the order (id's) of tasks in this column
       const orderedIds = Array.prototype.slice
@@ -254,9 +254,11 @@ header {
   top: 0;
 }
 
-.add-space:hover .add-btn {
-  background: var(--kando-lightgrey);
-  border-radius: 5px;
+@media (hover: hover) {
+  .add-space:hover .add-btn {
+    background: var(--kando-lightgrey);
+    border-radius: 5px;
+  }
 }
 .add-space {
   cursor: pointer;
