@@ -1,7 +1,7 @@
 <template>
   <article class="column">
     <header>
-      <div class="add-space" v-touch="addNewCard">
+      <div class="add-space" v-touch.release="addNewCard">
         <h3>
           {{ headerText }}
         </h3>
@@ -113,9 +113,10 @@ export default defineComponent({
       if (newCard) newCard.draggable = false;
       if (newInput) {
         newInput.addEventListener("focusout", focusOutEvtListener);
-        setTimeout(() => {
-          newInput.focus();
-        }, 300);
+        // setTimeout(() => {
+        //   newInput.focus();
+        // }, 300);
+        newInput.focus();
       }
       //get the order (id's) of tasks in this column
       const orderedIds = Array.prototype.slice
