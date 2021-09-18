@@ -308,6 +308,7 @@ header:hover .btn-wrapper .add-btn {
         border: none;
         font-size: 0.9rem;
         width: 90%;
+        transition: color 200ms linear 200ms, width 0ms linear 200ms;
       }
       input:focus {
         outline: none;

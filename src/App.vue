@@ -14,6 +14,7 @@ export default defineComponent({
 
 <style lang="scss">
 :root {
+  --kando-standard-duration: 300ms;
   --kando-green: #188755;
   --kando-beige: beige;
   --kando-taskborder: 1px solid rgba(0, 0, 0, 0.1);
