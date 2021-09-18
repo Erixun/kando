@@ -10,6 +10,7 @@
     <section class="mid-section">
       <base-column :id="upnext" />
       <base-column :id="doing" />
+      <!-- <footer class="mist"></footer> -->
     </section>
 
     <section class="drawer" id="right">
@@ -291,6 +292,8 @@ main {
     }
     .column:first-child {
       order: 1;
+      flex: 1 0 50%;
+      box-shadow: 0px 0px 4px 4px white;
     }
   }
 }
