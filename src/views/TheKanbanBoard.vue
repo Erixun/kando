@@ -145,8 +145,7 @@ main {
   }
 
   .drawer-btn {
-    position: absolute;
-    right: 0;
+    margin-left: auto;
     cursor: pointer;
     font-weight: bold;
     letter-spacing: -2px;
@@ -178,6 +177,7 @@ main {
   header > .add-space {
     opacity: 0;
     width: 0;
+    min-width: 0;
     transition: var(--kando-instant-transition);
     .add-btn {
       display: none;
