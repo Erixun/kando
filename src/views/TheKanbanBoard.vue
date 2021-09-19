@@ -10,7 +10,6 @@
     <section class="mid-section">
       <base-column :id="upnext" />
       <base-column :id="doing" />
-      <!-- <footer class="mist"></footer> -->
     </section>
 
     <section class="drawer" id="right">
