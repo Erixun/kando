@@ -2,19 +2,20 @@
   <main>
     <section class="drawer" id="left">
       <fa-icon icon="inbox" />
-      <base-column :id="backlog">
+      <base-column @click:task="showModal($event)" :id="backlog">
         <drawer-button drawerId="left" />
       </base-column>
     </section>
 
     <section class="mid-section">
-      <base-column :id="upnext" />
-      <base-column :id="doing" />
+      <h3 v-show="modalState.isOpen" @click="modalState.isOpen = false">{{modalState.task}}</h3>
+      <base-column @click:task="showModal($event)" :id="upnext" />
+      <base-column @click:task="showModal($event)" :id="doing" />
     </section>
 
     <section class="drawer" id="right">
       <fa-icon icon="check" />
-      <base-column :id="done">
+      <base-column @click:task="showModal($event)" :id="done">
         <drawer-button drawerId="right" />
       </base-column>
     </section>
@@ -22,12 +23,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
+import { defineComponent, onMounted, reactive } from "vue";
 import BaseColumn from "@/components/BaseColumn.vue";
 import { container } from "tsyringe";
 import TaskManager from "@/store/TaskManager";
 import { ColKey } from "@/store/constant/ColKey";
 import DrawerButton from "@/components/DrawerButton.vue";
+import { Task } from "@/store";
 
 export default defineComponent({
   name: "TheKanbanBoard",
@@ -66,7 +68,17 @@ export default defineComponent({
       window.onresize = handleDrawers;
     });
 
+    const defaultState = () => {return { isOpen: false, taskId: "", task: {} }}
+    const modalState = reactive(defaultState())
+    const showModal = (task: Task) => {
+      modalState.isOpen = true;
+      modalState.task = task;
+      // modalState.taskId = taskId;
+    }
+
     return {
+      showModal,
+      modalState,
       backlog: ColKey.Backlog,
       upnext: ColKey.UpNext,
       doing: ColKey.Doing,

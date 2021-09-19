@@ -28,6 +28,7 @@
           @dragstart="onDrag($event, task)"
           @dragenter="move(task.task_id)"
           @dragend="reset(task.task_id)"
+          @click="handleClick(task)"
         >
           <article class="task">
             <input
@@ -59,6 +60,7 @@ import { Task } from "@/store";
 
 export default defineComponent({
   name: "BaseColumn",
+  emits: ['click:task'],
   props: {
     id: {
       type: String,
@@ -76,9 +78,12 @@ export default defineComponent({
       },
     },
   },
-  setup(props) {
+  setup(props, context) {
     const taskManager = container.resolve(TaskManager);
-
+    const handleClick = (task: Task) => {
+      console.log(task)
+      context.emit("click:task", task)
+    }
     const handleNewTask = () => {
       const newCardInput = document.getElementById(
         "inputnew"
@@ -234,6 +239,7 @@ export default defineComponent({
       ),
       columnId: props.id,
       addNewCard,
+      handleClick,
       putPlaceHolder,
       onDrag,
       move,
