@@ -1,5 +1,7 @@
 <template>
   <main>
+    <task-modal :data="task" />
+
     <section class="drawer" id="left">
       <fa-icon icon="inbox" />
       <base-column @click:task="showModal($event)" :id="backlog">
@@ -8,9 +10,6 @@
     </section>
 
     <section class="mid-section">
-      <h3 v-show="modalState.isOpen" @click="modalState.isOpen = false">
-        {{ modalState.task }}
-      </h3>
       <base-column @click:task="showModal($event)" :id="upnext" />
       <base-column @click:task="showModal($event)" :id="doing" />
     </section>
@@ -25,17 +24,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive } from "vue";
+import { computed, defineComponent, onMounted, reactive } from "vue";
 import BaseColumn from "@/components/BaseColumn.vue";
 import { container } from "tsyringe";
 import TaskManager from "@/store/TaskManager";
 import { ColKey } from "@/store/constant/ColKey";
 import DrawerButton from "@/components/DrawerButton.vue";
 import { Task } from "@/store";
+import { TaskModal } from "@/components";
 
 export default defineComponent({
   name: "TheKanbanBoard",
-  components: { BaseColumn, DrawerButton },
+  components: { BaseColumn, DrawerButton, TaskModal },
   async created() {
     container.resolve(TaskManager).setup();
   },
@@ -71,18 +71,21 @@ export default defineComponent({
     });
 
     const defaultState = () => {
-      return { isOpen: false, taskId: "", task: {} };
+      return { task: {} };
     };
     const modalState = reactive(defaultState());
     const showModal = (task: Task) => {
-      modalState.isOpen = true;
       modalState.task = task;
-      // modalState.taskId = taskId;
+      const modal = document.getElementById("task-modal");
+      modal!.style.display = "block";
+      setTimeout(() => {
+        modal?.classList.add("show");
+      }, 100);
     };
 
     return {
       showModal,
-      modalState,
+      task: computed(() => modalState.task),
       backlog: ColKey.Backlog,
       upnext: ColKey.UpNext,
       doing: ColKey.Doing,
@@ -107,6 +110,14 @@ main {
   align-self: center;
   justify-content: center;
   width: 100vw;
+
+  .modal {
+    z-index: 3060;
+    background-color: rgba(0, 0, 0, 0.2);
+    .modal-dialog {
+      top: 15vh;
+    }
+  }
 
   header {
     display: flex;
