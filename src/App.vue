@@ -39,6 +39,15 @@ html {
   height: 100%;
   width: 100%;
   display: flex;
+  line-height: 1;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    all: revert;
+  }
 }
 /* Hide scrollbar for Chrome, Safari and Opera */
 *::-webkit-scrollbar {
@@ -49,6 +58,7 @@ html {
 * {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  box-sizing: content-box;
 }
 
 #app {
