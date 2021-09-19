@@ -1,33 +1,38 @@
 <template>
   <main>
-    <base-drawer id="left">
+    <section class="drawer" id="left">
       <fa-icon icon="inbox" />
-      <base-column :id="backlog" />
-    </base-drawer>
-
-    <section id="main-columns">
-      <base-column :id="upnext" />
-      <base-column :id="doing" />
+      <base-column :id="backlog">
+        <drawer-button drawerId="left" />
+      </base-column>
     </section>
 
-    <base-drawer id="right">
+    <section class="mid-section">
+      <base-column :id="upnext" />
+      <base-column :id="doing" />
+      <!-- <footer class="mist"></footer> -->
+    </section>
+
+    <section class="drawer" id="right">
       <fa-icon icon="check" />
-      <base-column :id="done" />
-    </base-drawer>
+      <base-column :id="done">
+        <drawer-button drawerId="right" />
+      </base-column>
+    </section>
   </main>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted } from "vue";
 import BaseColumn from "@/components/BaseColumn.vue";
-import BaseDrawer from "@/components/BaseDrawer.vue";
 import { container } from "tsyringe";
 import TaskManager from "@/store/TaskManager";
 import { ColKey } from "@/store/constant/ColKey";
+import DrawerButton from "@/components/DrawerButton.vue";
 
 export default defineComponent({
   name: "TheKanbanBoard",
-  components: { BaseColumn, BaseDrawer },
+  components: { BaseColumn, DrawerButton },
   async created() {
     container.resolve(TaskManager).setup();
   },
@@ -90,6 +95,8 @@ main {
 
   header {
     display: flex;
+    position: relative;
+    white-space: nowrap;
   }
 
   .placeholder {
@@ -118,7 +125,7 @@ main {
   .drawer:not(.hidden),
   .drawer.closed:not(.no-hover):hover {
     position: relative;
-    transition: 1000ms;
+    transition: 300ms;
     width: 20%;
     min-width: 160px;
     display: flex;
@@ -129,7 +136,8 @@ main {
     .fa-check {
       height: 11vh;
       align-self: center;
-      padding-top: 4vh;
+      padding-top: 2vh;
+      flex-shrink: 0;
     }
 
     .column {
@@ -139,12 +147,10 @@ main {
   }
 
   .drawer-btn {
+    margin-left: auto;
     cursor: pointer;
-    position: absolute;
     font-weight: bold;
     letter-spacing: -2px;
-    top: $kando-space-above;
-    right: 5px;
     transition: 100ms;
     border: none;
     padding: 5px;
@@ -168,11 +174,16 @@ main {
 .drawer.closed.no-hover {
   min-width: 35px;
   width: 35px;
-  transition: 500ms;
+  transition: 300ms;
 
-  header {
+  header > .add-space {
     opacity: 0;
-    transition: opacity 300ms linear;
+    width: 0;
+    min-width: 0;
+    transition: var(--kando-instant-transition);
+    .add-btn {
+      display: none;
+    }
   }
 }
 
@@ -197,6 +208,8 @@ main {
 
   input[type="text"] {
     color: transparent;
+    width: 0;
+    transition: var(--kando-instant-transition);
   }
 }
 
@@ -218,7 +231,7 @@ main {
 }
 
 // main columns styling
-#main-columns {
+.mid-section {
   padding: $kando-space-above 30px 0;
   display: flex;
   column-gap: 8%;
@@ -258,13 +271,13 @@ main {
     }
   }
 
-  .drawer.closed:not(:hover) > .column,
-  .drawer.closed.no-hover > .column {
+  .drawer.closed:not(:hover) .tasks,
+  .drawer.closed.no-hover .tasks {
     opacity: 0;
     transition-duration: 200ms;
   }
 
-  #main-columns {
+  .mid-section {
     display: flex;
     flex-direction: column;
     padding: $kando-space-above 5px 0;
@@ -273,6 +286,7 @@ main {
       min-width: unset;
       width: 90%;
       margin: 0 auto;
+      box-shadow: 0px 0px 6px 6px white;
 
       .tasks {
         padding-bottom: 5vh;
@@ -280,6 +294,7 @@ main {
     }
     .column:first-child {
       order: 1;
+      flex: 1 0 50%;
     }
   }
 }

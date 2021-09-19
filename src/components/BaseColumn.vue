@@ -1,14 +1,15 @@
 <template>
   <article class="column">
-    <header v-touch="addNewCard">
-      <h3>
-        {{ headerText }}
-      </h3>
-      <div class="btn-wrapper">
+    <header>
+      <div class="add-space" v-touch.release="addNewCard">
+        <h3>
+          {{ headerText }}
+        </h3>
         <button class="add-btn">
           <fa-icon icon="plus" class="add-icon" />
         </button>
       </div>
+      <slot></slot>
     </header>
     <section
       class="tasks"
@@ -112,9 +113,10 @@ export default defineComponent({
       if (newCard) newCard.draggable = false;
       if (newInput) {
         newInput.addEventListener("focusout", focusOutEvtListener);
-        setTimeout(() => {
-          newInput.focus();
-        }, 100);
+        // setTimeout(() => {
+        //   newInput.focus();
+        // }, 300);
+        newInput.focus();
       }
       //get the order (id's) of tasks in this column
       const orderedIds = Array.prototype.slice
@@ -246,30 +248,28 @@ export default defineComponent({
 .column {
   display: flex;
   flex-direction: column;
-  // overflow: auto;
-}
-header {
-  cursor: pointer;
-  // position: sticky;
-  // top: 0;
-}
-header > h3 {
-  text-align: left;
-  font-weight: bold;
-  margin: 0;
-  padding: 5px;
-  margin-left: 2px;
-  overflow: hidden;
 }
 
-header:hover .btn-wrapper .add-btn {
-  background: var(--kando-lightgrey);
-  border-radius: 5px;
+@media (hover: hover) {
+  .add-space:hover .add-btn {
+    background: var(--kando-lightgrey);
+    border-radius: 5px;
+  }
 }
-.btn-wrapper {
+.add-space {
+  cursor: pointer;
   display: flex;
   align-items: center;
-
+  min-width: 65%;
+  transition: var(--kando-standard-transition);
+  h3 {
+    text-align: left;
+    font-weight: bold;
+    margin: 0;
+    padding: 5px;
+    margin-left: 2px;
+    overflow: hidden;
+  }
   .add-btn {
     cursor: pointer;
     border: none;
@@ -308,6 +308,7 @@ header:hover .btn-wrapper .add-btn {
         border: none;
         font-size: 0.9rem;
         width: 90%;
+        transition: var(--kando-standard-transition), width 0ms linear 100ms;
       }
       input:focus {
         outline: none;

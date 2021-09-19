@@ -1,27 +1,24 @@
 <template>
-  <div :id="drawerId" @dragenter="onDragEnter()" class="drawer">
-    <slot></slot>
-    <button :id="drawerBtnId" class="drawer-btn" v-touch:release="toggleClosed">
-      <fa-icon :id="compressId" icon="compress-alt"></fa-icon>
-      <fa-icon :id="expandId" icon="expand-alt"></fa-icon>
-    </button>
-  </div>
+  <button :id="drawerBtnId" class="drawer-btn" v-touch:release="toggleClosed">
+    <fa-icon :id="compressId" icon="compress-alt"></fa-icon>
+    <fa-icon :id="expandId" icon="expand-alt"></fa-icon>
+  </button>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from "vue";
 
 export default defineComponent({
-  name: "BaseDrawer",
+  name: "DrawerButton",
   props: {
-    id: {
+    drawerId: {
       type: String,
       required: true,
     },
   },
   methods: {
     toggleClosed() {
-      const drawer = document.getElementById(this.drawerId);
+      const drawer = document.getElementById(this.targetId);
       drawer
         ? drawer.classList.toggle("closed")
         : () => {
@@ -44,20 +41,13 @@ export default defineComponent({
         }
       }
     },
-    onDragEnter() {
-      const drawer = document.getElementById(this.drawerId);
-
-      if (drawer?.classList?.contains("closed")) {
-        this.toggleClosed();
-      }
-    },
   },
   setup(props) {
     return {
-      drawerId: computed(() => `drawer-${props.id}`),
-      drawerBtnId: computed(() => `drawer-${props.id}-btn`),
-      compressId: computed(() => `${props.id}-compress`),
-      expandId: computed(() => `${props.id}-expand`),
+      targetId: props.drawerId,
+      drawerBtnId: computed(() => `${props.drawerId}-drawer-btn`),
+      compressId: computed(() => `${props.drawerId}-compress`),
+      expandId: computed(() => `${props.drawerId}-expand`),
     };
   },
 });

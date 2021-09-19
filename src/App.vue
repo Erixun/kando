@@ -14,13 +14,16 @@ export default defineComponent({
 
 <style lang="scss">
 :root {
+  --kando-standard-duration: 300ms;
+  --kando-standard-transition: all 200ms linear 100ms;
+  --kando-instant-transition: all 0ms linear;
   --kando-green: #188755;
   --kando-beige: beige;
   --kando-taskborder: 1px solid rgba(0, 0, 0, 0.1);
   --kando-lightblue: #cdf3ff;
   --kando-lightgrey: #e8e8e8;
   --kando-orange: #fff17e;
-  --kando-space-above: 15vh;
+  --kando-space-above: 13vh;
   --kando-defaultborder: 1px solid #80808057;
   --kando-boxshadow05: 0 1px 2px rgba(0, 0, 0, 0.05),
     0 1px 4px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.05);
