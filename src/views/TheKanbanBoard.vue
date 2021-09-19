@@ -8,7 +8,9 @@
     </section>
 
     <section class="mid-section">
-      <h3 v-show="modalState.isOpen" @click="modalState.isOpen = false">{{modalState.task}}</h3>
+      <h3 v-show="modalState.isOpen" @click="modalState.isOpen = false">
+        {{ modalState.task }}
+      </h3>
       <base-column @click:task="showModal($event)" :id="upnext" />
       <base-column @click:task="showModal($event)" :id="doing" />
     </section>
@@ -68,13 +70,15 @@ export default defineComponent({
       window.onresize = handleDrawers;
     });
 
-    const defaultState = () => {return { isOpen: false, taskId: "", task: {} }}
-    const modalState = reactive(defaultState())
+    const defaultState = () => {
+      return { isOpen: false, taskId: "", task: {} };
+    };
+    const modalState = reactive(defaultState());
     const showModal = (task: Task) => {
       modalState.isOpen = true;
       modalState.task = task;
       // modalState.taskId = taskId;
-    }
+    };
 
     return {
       showModal,

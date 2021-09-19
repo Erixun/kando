@@ -60,7 +60,7 @@ import { Task } from "@/store";
 
 export default defineComponent({
   name: "BaseColumn",
-  emits: ['click:task'],
+  emits: ["click:task"],
   props: {
     id: {
       type: String,
@@ -81,9 +81,9 @@ export default defineComponent({
   setup(props, context) {
     const taskManager = container.resolve(TaskManager);
     const handleClick = (task: Task) => {
-      console.log(task)
-      context.emit("click:task", task)
-    }
+      console.log(task);
+      context.emit("click:task", task);
+    };
     const handleNewTask = () => {
       const newCardInput = document.getElementById(
         "inputnew"
