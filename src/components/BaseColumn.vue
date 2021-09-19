@@ -246,12 +246,12 @@ export default defineComponent({
 .column {
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  // overflow: auto;
 }
 header {
   cursor: pointer;
-  position: sticky;
-  top: 0;
+  // position: sticky;
+  // top: 0;
 }
 header > h3 {
   text-align: left;
