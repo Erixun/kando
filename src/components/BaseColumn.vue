@@ -28,7 +28,7 @@
           @dragstart="onDrag($event, task)"
           @dragenter="move(task.task_id)"
           @dragend="reset(task.task_id)"
-          @click="handleClick(task)"
+          v-touch.release="() => handleClick(task)"
         >
           <article class="task">
             <input
@@ -80,8 +80,7 @@ export default defineComponent({
   },
   setup(props, context) {
     const taskManager = container.resolve(TaskManager);
-    const handleClick = (task: Task) => {
-      console.log(task);
+    const handleClick = function(task: Task) {
       context.emit("click:task", task);
     };
     const handleNewTask = () => {
