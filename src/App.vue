@@ -103,6 +103,7 @@ main {
   border: var(--kando-taskborder);
 
   input[type="text"],
+  div,
   textarea {
     font-family: "Inter";
     background: inherit;
