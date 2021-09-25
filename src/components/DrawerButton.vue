@@ -1,5 +1,5 @@
 <template>
-  <button :id="drawerBtnId" class="drawer-btn" v-touch:release="toggleClosed">
+  <button :id="drawerBtnId" class="drawer-btn" v-touch:release="toggleClosed" aria-label="drawer-button">
     <fa-icon :id="compressId" icon="compress-alt"></fa-icon>
     <fa-icon :id="expandId" icon="expand-alt"></fa-icon>
   </button>
