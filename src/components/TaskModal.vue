@@ -54,6 +54,7 @@
                   id="floatingUntil"
                   placeholder="Until"
                   v-model="task.until"
+                  :disabled="task.at === ''"
                 />
                 <label for="floatingUntil">Until</label>
               </div>
