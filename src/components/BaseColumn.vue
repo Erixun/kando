@@ -1,14 +1,17 @@
 <template>
   <article class="column">
     <header>
-      <div class="add-space" v-touch.release="addNewCard">
+      <button
+        class="add-space add-btn"
+        v-touch.release="addNewCard"
+      >
         <h3>
           {{ headerText }}
         </h3>
-        <button class="add-btn">
+        <span class="add-btn">
           <fa-icon icon="plus" class="add-icon" />
-        </button>
-      </div>
+        </span>
+      </button>
       <slot></slot>
     </header>
     <section
@@ -28,23 +31,31 @@
           @dragstart="onDrag($event, task)"
           @dragenter="move(task.task_id)"
           @dragend="reset(task.task_id)"
-          v-touch.release="() => handleClick(task)"
         >
-          <article class="task">
+          <button class="task" v-touch.release="() => handleClick(task)">
             <input
+              v-if="task.task_id == 'new'"
               type="text"
               :id="`input${task.task_id}`"
               v-model="task.name"
               placeholder="New task"
             />
-            <span
-              class="time-span"
-              v-if="task.at"
-              :id="`at-input${task.task_id}`"
-            >
-              {{ task.at }}{{ task.until ? ` - ${task.until}` : "" }}
-            </span>
-          </article>
+            <div v-else :id="`input${task.task_id}`">
+              {{ task.name }}
+            </div>
+            <div class="date-time" v-if="task.at || task.do_date">
+              <div
+                class="time-span"
+                v-if="task.at"
+                :id="`at-input${task.task_id}`"
+              >
+                {{ task.at }}{{ task.until ? ` - ${task.until}` : "" }}
+              </div>
+              <div class="do-date" v-if="task.do_date">
+                {{ task.do_date }}
+              </div>
+            </div>
+          </button>
         </li>
       </ul>
     </section>
@@ -80,7 +91,7 @@ export default defineComponent({
   },
   setup(props, context) {
     const taskManager = container.resolve(TaskManager);
-    const handleClick = function(task: Task) {
+    const handleClick = function (task: Task) {
       context.emit("click:task", task);
     };
     const handleNewTask = () => {
@@ -264,6 +275,9 @@ export default defineComponent({
   align-items: center;
   min-width: 65%;
   transition: var(--kando-standard-transition);
+  background: transparent;
+  border: none;
+  border-radius: 5px;
   h3 {
     text-align: left;
     font-weight: bold;
@@ -298,35 +312,54 @@ export default defineComponent({
     display: grid;
     grid-auto-rows: min-content;
 
+    li {
+      transition-duration: 100ms;
+      padding: 4px 0;
+      display: flex;
+      flex-direction: column;
+    }
+
     .task {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
       cursor: pointer;
       text-align: left;
       min-height: 1rem;
       padding: 5px;
       border-radius: 4px;
 
-      input {
+      input,
+      div {
         cursor: pointer;
         border: none;
         font-size: 0.9rem;
-        width: 90%;
+        font-weight: 400;
+        margin: unset;
+        padding: 2px;
+        line-height: 1.2;
+        white-space: nowrap;
         transition: var(--kando-standard-transition), width 0ms linear 100ms;
+      }
+      #inputnew {
+        width: 99%;
       }
       input:focus {
         outline: none;
       }
-      .time-span {
-        font-size: 0.75rem;
-        font-family: "Inter";
-        white-space: nowrap;
-        padding: 1px 3px;
+      .date-time {
+        display: flex;
+        justify-content: space-between;
+        padding: 1px 5px;
+        .time-span,
+        .do-date {
+          font-size: 0.75rem;
+          font-family: "Inter";
+          white-space: nowrap;
+          padding: 1px 0px;
+        }
       }
     }
-  }
-
-  .task-list li {
-    transition-duration: 100ms;
-    padding: 4px 0;
   }
 }
 </style>
