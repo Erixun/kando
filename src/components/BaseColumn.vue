@@ -1,10 +1,7 @@
 <template>
   <article class="column">
     <header>
-      <button
-        class="add-space add-btn"
-        v-touch.release="addNewCard"
-      >
+      <button class="add-space add-btn" v-touch.release="addNewCard">
         <h3>
           {{ headerText }}
         </h3>
@@ -351,6 +348,8 @@ export default defineComponent({
         display: flex;
         justify-content: space-between;
         padding: 1px 5px;
+        gap: 4px;
+        flex-wrap: wrap;
         .time-span,
         .do-date {
           font-size: 0.75rem;
