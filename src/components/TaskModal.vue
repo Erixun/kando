@@ -37,7 +37,7 @@
             <div class="col-xs">
               <div class="form-floating">
                 <input
-                  type="text"
+                  type="time"
                   class="form-control"
                   id="floatingAt"
                   placeholder="At time"
@@ -49,7 +49,7 @@
             <div class="col-xs">
               <div class="form-floating">
                 <input
-                  type="text"
+                  type="time"
                   class="form-control"
                   id="floatingUntil"
                   placeholder="Until"
@@ -61,7 +61,7 @@
           </div>
           <div class="form-floating">
             <input
-              type="text"
+              type="date"
               class="form-control"
               id="floatingDate"
               placeholder="Date"
