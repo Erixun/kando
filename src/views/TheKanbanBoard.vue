@@ -81,6 +81,8 @@ export default defineComponent({
       setTimeout(() => {
         modal?.classList.add("show");
       }, 100);
+      const taskNameInput = document.getElementById("floatingTask");
+      taskNameInput?.focus()
     };
 
     return {
