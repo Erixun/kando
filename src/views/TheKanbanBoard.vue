@@ -75,14 +75,15 @@ export default defineComponent({
     };
     const modalState = reactive(defaultState());
     const showModal = (task: Task) => {
+      if(task.task_id === "new") return;
       modalState.task = task;
       const modal = document.getElementById("task-modal");
       modal!.style.display = "block";
+      const taskNameInput = document.getElementById("floatingTask");
+      taskNameInput?.focus();
       setTimeout(() => {
         modal?.classList.add("show");
       }, 100);
-      const taskNameInput = document.getElementById("floatingTask");
-      taskNameInput?.focus()
     };
 
     return {
@@ -125,6 +126,7 @@ main {
     display: flex;
     position: relative;
     white-space: nowrap;
+    padding: 2px;
   }
 
   .placeholder {
@@ -200,8 +202,8 @@ main {
 
 .drawer.closed:not(:hover),
 .drawer.closed.no-hover {
-  min-width: 35px;
-  width: 35px;
+  min-width: 38px;
+  width: 38px;
   transition: 300ms;
 
   header > .add-space {
@@ -234,7 +236,8 @@ main {
 .drawer.closed:not(:hover) > .column {
   overflow: hidden;
 
-  input[type="text"] {
+  input[type="text"],
+  div {
     color: transparent;
     width: 0;
     transition: var(--kando-instant-transition);
@@ -252,6 +255,10 @@ main {
   opacity: 1;
   transition: opacity 300ms linear;
   box-shadow: $kando-boxshadow-fade $kando-grey;
+
+  .add-space {
+    padding: 0;
+  }
 }
 .drawer .placeholder {
   background-color: darkgray;
@@ -290,6 +297,10 @@ main {
   }
 }
 @media (max-width: 580px) {
+  main .modal .modal-dialog {
+    top: 4vh;
+  }
+
   .drawer:not(.hidden) {
     min-width: 40vw;
 
