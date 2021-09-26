@@ -275,6 +275,8 @@ export default defineComponent({
   background: transparent;
   border: none;
   border-radius: 5px;
+  padding: 1px 4px;
+  margin: 0;
   h3 {
     text-align: left;
     font-weight: bold;
@@ -319,6 +321,7 @@ export default defineComponent({
     .task {
       display: flex;
       flex-direction: column;
+      align-items: stretch;
       gap: 1px;
       cursor: pointer;
       text-align: left;
