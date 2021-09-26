@@ -76,11 +76,10 @@ export default defineComponent({
     const modalState = reactive(defaultState());
     const showModal = (task: Task) => {
       if(task.task_id === "new") return;
+
       modalState.task = task;
       const modal = document.getElementById("task-modal");
       modal!.style.display = "block";
-      const taskNameInput = document.getElementById("floatingTask");
-      taskNameInput?.focus();
       setTimeout(() => {
         modal?.classList.add("show");
       }, 100);
